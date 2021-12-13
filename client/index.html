@@ -1,13 +1,55 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google</title>
-    <link rel="stylesheet" href="/client/styles.css">
-    <script defer src = "/client/scripts.js"></script>
-</head>
-<body>
-    <h1>test</h1>
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Google</title>
+        <link rel="stylesheet" href="/client/styles.css">
+        <script defer src = "/client/scripts.js"></script>
+    </head>
+    <body>
+
+        <form id="giphy-form">
+            <label for="giphysearch">Giphy Search</label>
+            <input id="giphysearch" type="text" name="giphysearch" />
+            <button id="btnGiphySearch" type="submit">Get gifs!!!</button>
+        </form>
+        <div class="giphyOut"></div>
+
+
+
+        <script>
+            const giphyForm = document.querySelector('#giphy-form');
+            let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
+
+            const sendApiRequest = (e) => {
+                e.preventDefault();
+                let userInput = document.getElementById("giphysearch").value;
+                console.log(userInput);
+
+                let giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${ApiKey}`;
+                fetch(giphyApiUrl)
+                    .then( data => {
+                        return data.json();
+                    } )
+                    .then( json => {
+                        console.log(json.data);
+                        console.log("META", json.meta);
+                        console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
+                        let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
+                        let img = document.createElement("img");
+                        img.setAttribute("src", imgPath);
+                        let out = document.querySelector(".giphyOut");
+                        out.insertAdjacentElement("afterbegin", img);
+                        }
+                    )
+            }
+            giphyForm.addEventListener("submit", sendApiRequest);
+
+
+        </script>
+
+
 </html>
