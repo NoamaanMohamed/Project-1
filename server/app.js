@@ -5,7 +5,6 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-const posts = require("./models/posts");
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
