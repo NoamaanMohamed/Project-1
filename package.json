@@ -4,7 +4,7 @@
   "description": "java-spread This is our journaling website, where users can submit anonnymous journal entries, view and comment on posts left by others on the site and react to their posts with a small selection of emojis. We have also added the functionality of choosing a random gif related to your gif search query.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
     "build:production": "node --version" 
@@ -19,5 +19,15 @@
   "bugs": {
     "url": "https://github.com/NoamaanMohamed/Project-1/issues"
   },
-  "homepage": "https://github.com/NoamaanMohamed/Project-1#readme"
+  "homepage": "https://github.com/NoamaanMohamed/Project-1#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+}
 }
