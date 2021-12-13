@@ -1,6 +1,7 @@
 
 const showBtn = document.querySelector("#showAll");
 showBtn.addEventListener('click', showAll);
+postBtn.addEventListener
 
 function showAll(e) {
   e.preventDefault();
