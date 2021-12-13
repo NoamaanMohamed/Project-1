@@ -12,18 +12,16 @@ class Post{
         return posts;
     }
 
-    static content(num){
-        //first map the post
-        const posts = postsData.map((data) => new Post(data));
-        return posts[num].content; // retrieve the content of the index specified
+    static findById(id){
+        try{
+            const postData = postsData.filter((post) => post.id === id)[0];
+            const post = new Post(postData);
+            return post;
+        } catch (err) {
+            throw new Error('This post does not exist.');
+        }
     }
-
-    static date(num){
-    //first map the post
-    const posts = postsData.map((data) => new Post(data));
-    return posts[num].date; // retrieve the content of the index specified
-    }
-
+    
     static create(post){
         const newPostId = postsData.length + 1;
         const newPost = new Post({id: newPostId, ...post});
