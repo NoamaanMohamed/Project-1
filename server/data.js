@@ -1,15 +1,8 @@
 
-results = [
-    {id:1, title: "stackoverflow1" , url: "https://stackoverflow.com/"}, 
-    {id:2, title: "stackoverflow2" , url: "https://stackoverflow.com/"}, 
-    {id:3, title: "stackoverflow3" , url: "https://stackoverflow.com/"}, 
-    {id:4, title: "stackoverflow4" , url: "https://stackoverflow.com/"}, 
-    {id:5, title: "stackoverflow5" , url: "https://stackoverflow.com/"}, 
-    {id:6, title: "stackoverflow6" , url: "https://stackoverflow.com/"}, 
-    {id:7, title: "stackoverflow7" , url: "https://stackoverflow.com/"}, 
-    {id:8, title: "stackoverflow8" , url: "https://stackoverflow.com/"}, 
-    {id:9, title: "stackoverflow9" , url: "https://stackoverflow.com/"}, 
-    {id:10, title: "stackoverflow10" , url: "https://stackoverflow.com/"}
+posts = [
+    {id:1, content: "askdjfhkasj dfkasj dfkasj df" , date:"13/12/2021"},
+    {id:2, content: "asasdj dfkasj dfkasj df" , date:""},
+    {id:3, content: "askdjffkasj df" , date:""}, 
 ]
 
-  module.exports = results;
+  module.exports = posts;
