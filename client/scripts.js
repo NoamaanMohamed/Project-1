@@ -1,34 +1,24 @@
-let search = document.querySelector(".search");
-let searchButton = document.querySelector(".search-btn");
-let resultTen = document.getElementById("ten");
-let resultOne = document.getElementById("one");
+const showBtn = document.querySelector("#showAll");
+showBtn.addEventListener('click', showAll);
 
-const searchResult = () => {
-    let url = "https://www.google.com/search?q="+ search.value; 
-    window.open(url, "_self");
+function showAll(e) {
+  e.preventDefault();
+  fetch('http://localhost:3000/posts')
+    .then(resp => resp.json())
+    .then(appendPosts).catch(console.warn);
 }
 
-function getTenResults(e) {
-    e.preventDefault()
-    fetch('http://localhost:3000/results')
-      .then(resp => resp.text())
-      .then(text => {
-        window.location.href = "./tenresults.html";
-        document.getElementById('text').innerHTML = text;
-      })
-  }
+function appendPosts(posts){
+  posts.forEach(addAllPosts);
+};
 
-  function getRandomResult(e) {
-    e.preventDefault()
-    fetch('http://localhost:3000/random')
-      .then(resp => resp.text())
-      .then(text => {
-        window.location.href = "./randomresult.html";
-        document.getElementById('textone').innerHTML = text;
-      })
-  }
+function addAllPosts(postData) {
+  const newDiv = document.createElement('div');
+  newDiv.className = "col-sm";
+  newDiv.textContent = `${postData.content}`;
+  const element = document.querySelector("div.row");
+  element.appendChild(newDiv);
+}
 
-searchButton.addEventListener("click", searchResult)
-resultTen.addEventListener('click', e => getTenResults(e))
-resultOne.addEventListener("click", getRandomResult)
 
+showAll();
