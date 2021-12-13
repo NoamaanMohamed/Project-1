@@ -2,7 +2,7 @@
 const showBtn = document.querySelector("#showAll");
 const postBtn = document.querySelector("#postBtn");
 showBtn.addEventListener('click', showAll);
-postBtn.addEventListener('click', e => sendPost(e));
+postBtn.addEventListener('click', sendPost);
 
 function showAll() {
   fetch('http://localhost:3000/posts')
