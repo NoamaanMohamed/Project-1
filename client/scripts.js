@@ -1,6 +1,9 @@
 const giphyForm = document.querySelector('#giphy-form');
             let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
 
+            const init = () => {
+
+            }
             const sendApiRequest = (e) => {
                 e.preventDefault();
                 let userInput = document.getElementById("giphysearch").value;
