@@ -1,3 +1,4 @@
+
 const showBtn = document.querySelector("#showAll");
 showBtn.addEventListener('click', showAll);
 
@@ -22,3 +23,30 @@ function addAllPosts(postData) {
 
 
 showAll();
+
+const giphyForm = document.querySelector('#giphy-form');
+            let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
+
+            const sendApiRequest = (e) => {
+                e.preventDefault();
+                let userInput = document.getElementById("giphysearch").value;
+                console.log(userInput);
+
+                let giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${ApiKey}`;
+                fetch(giphyApiUrl)
+                    .then( data => {
+                        return data.json();
+                    } )
+                    .then( json => {
+                        console.log(json.data);
+                        console.log("META", json.meta);
+                        console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
+                        let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
+                        let img = document.createElement("img");
+                        img.setAttribute("src", imgPath);
+                        let out = document.querySelector(".giphyOut");
+                        out.insertAdjacentElement("afterbegin", img);
+                        }
+                    )
+            }
+            giphyForm.addEventListener("submit", sendApiRequest);
