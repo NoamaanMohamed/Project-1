@@ -33,6 +33,4 @@ class Post{
 
 };
 
-//console.log(Post.content());
-
 module.exports = Post;
