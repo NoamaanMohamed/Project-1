@@ -1,7 +1,7 @@
 
-// const showBtn = document.querySelector("#showAll");
+//const showBtn = document.querySelector("#refAllPosts");
 // const postBtn = document.querySelector("#postBtn");
-// showBtn.addEventListener('click', showAll);
+//showBtn.addEventListener('click', showAll);
 // postBtn.addEventListener('click', sendPost);
 
 showAll();
@@ -42,6 +42,7 @@ function showAll() {
 //   const element = document.querySelector("div.row");
 //   element.appendChild(newDiv);
 // }
+
 function appendPosts(posts) {
   posts.forEach(showPost);
 };
