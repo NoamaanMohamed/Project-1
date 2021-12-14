@@ -1,8 +1,33 @@
 
-// const showBtn = document.querySelector("#showAll");
+//const showBtn = document.querySelector("#refAllPosts");
 // const postBtn = document.querySelector("#postBtn");
-// showBtn.addEventListener('click', showAll);
+//showBtn.addEventListener('click', showAll);
 // postBtn.addEventListener('click', sendPost);
+
+
+
+function newPost(e){
+  e.preventDefault();
+
+  const postData = {
+    title: e.target.title.value,
+    body: e.target.body.value,
+    date : new Date().toJSON().slice(0, 10),
+  };
+  const options = { 
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+        "Content-Type": "application/json"
+    }
+  };
+
+  fetch('http://localhost:3000/posts', options)
+  .then(r => r.json())
+  .then(addAllPosts)
+  .catch(console.warn);
+};
+
 
 
 showAll();
@@ -43,6 +68,7 @@ function showAll() {
 //   const element = document.querySelector("div.row");
 //   element.appendChild(newDiv);
 // }
+
 function appendPosts(posts) {
   posts.forEach(showPost);
 };
@@ -151,29 +177,7 @@ function showPostAndComments(postId) {
 //   newComFrame.append(newComment);
 // }
 
-
-function sendPost(e){
-  e.preventDefault();
-
-  const postData = {
-    body: e.target.body.value,
-    date : new Date().toJSON().slice(0, 10),
-  };
-  const options = { 
-    method: 'POST',
-    body: JSON.stringify(postData),
-    headers: {
-        "Content-Type": "application/json"
-    }
-  };
-
-  fetch('http://localhost:3000/posts', options)
-  .then(r => r.json())
-  .then(addAllPosts)
-  .catch(console.warn);
-};
-
-
+// ######################## GIPHY ###########################################
 const giphyForm = document.querySelector('#giphy-form');
             let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
 

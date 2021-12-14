@@ -3,9 +3,13 @@ const postsData = require('../data');
 class Post{
     constructor(data){
         this.id = data.id;
-        // this.content = data.content;
+        this.title = data.title;
         this.body = data.body;
         this.date = data.date;
+        this.comments = data.comments;
+        this.likes1 = data.likes1;
+        this.likes2 = data.likes2;
+        this.likes3 = data.likes3;
     }
 
     static get All(){
@@ -24,8 +28,8 @@ class Post{
     }
     
     static create(post){
-        const newPostId = postsData.length + 1;
-        const newPost = new Post({id: newPostId, ...post});
+        const newPostId = postsData.length;
+        const newPost = new Post({id: newPostId, date: new Date().toJSON().slice(0, 10),comments:[], likes1:"", likes2: "", likes3: "", ...post});
         postsData.push(newPost);
         return newPost;
     }
