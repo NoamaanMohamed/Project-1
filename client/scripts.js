@@ -1,17 +1,8 @@
 
-<<<<<<< HEAD
-const showBtn = document.querySelector("#showAll");
-const postBtn = document.querySelector("#postBtn");
-showBtn.addEventListener('click', showAll);
-postBtn.addEventListener('click', sendPost);
-// >>>>>>> 9c2c5ae4009d7ad58764778214670c630aba5545
-=======
 // const showBtn = document.querySelector("#showAll");
 // const postBtn = document.querySelector("#postBtn");
 // showBtn.addEventListener('click', showAll);
 // postBtn.addEventListener('click', sendPost);
->>>>>>> 4f7d9a0d1ab80782a7524b6cd78cdd66c068bf4d
-
 
 showAll();
 
@@ -158,6 +149,22 @@ function showPostAndComments(postId) {
 //   newComment.classList.add('comment');
 //   newComFrame.append(newComment);
 // }
+
+const allPosts = document.querySelector('#refAllPosts');
+const newPost = document.querySelector('#refNewPost');
+const getAllPosts = () => {
+  document.getElementById('posts').classList.remove('hide-section');
+  document.getElementById('showPostAndComments').classList.add('hide-section');
+  document.getElementById('addPost').classList.add('hide-section');
+};
+const writeNewPost = () => {
+  document.getElementById('posts').classList.add('hide-section');
+  document.getElementById('showPostAndComments').classList.add('hide-section');
+  document.getElementById('addPost').classList.remove('hide-section');
+}
+allPosts.addEventListener('click', getAllPosts);
+newPost.addEventListener('click', writeNewPost);
+
 
 
 function sendPost(e){
