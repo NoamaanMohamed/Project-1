@@ -148,7 +148,6 @@ function showPost(post) {
 };
 
 // added by ginger
-
 function appendPostAndComs(postId) {
   urlIdPostEndpoint = `http://localhost:3000/posts/${postId}`;
   console.log(urlIdPostEndpoint);
