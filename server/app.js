@@ -1,6 +1,8 @@
+// import the packages necessary to run the server
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+// the body parser is needed to just to send the body at post request, now available at routes
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
