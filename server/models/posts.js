@@ -1,5 +1,17 @@
 const postsData = require('../data');
 
+class Comment{
+    constructor(data){
+        this.id = data.id;
+        this.comment = data.comment;
+    };
+
+    static get All(){
+        const comments = postsData.comments.map((comment) => new Comment(comment));
+        return comments;
+    };
+}
+
 class Post{
     constructor(data){
         this.id = data.id;
@@ -10,30 +22,30 @@ class Post{
         this.likes1 = data.likes1;
         this.likes2 = data.likes2;
         this.likes3 = data.likes3;
-    }
+    };
 
     static get All(){
-        const posts = postsData.map((post) => new Post(post));
+        const posts = postsData.posts.map((post) => new Post(post));
         return posts;
-    }
+    };
 
     static findById(id){
         try{
-            const postData = postsData.filter((post) => post.id === id)[0];
+            const postData = postsData.posts.filter((post) => post.id === id)[0];
             const post = new Post(postData);
             return post;
         } catch (err) {
             throw new Error('This post does not exist.');
-        }
-    }
+        };
+    };
     
     static create(post){
-        const newPostId = postsData.length;
+        const newPostId = postsData.posts.length;
         const newPost = new Post({id: newPostId, date: new Date().toJSON().slice(0, 10),comments:[], likes1:"", likes2: "", likes3: "", ...post});
-        postsData.push(newPost);
+        postsData.posts.push(newPost);
         return newPost;
-    }
+    };
 
 };
 
-module.exports = Post;
+module.exports = {Post, Comment};

@@ -109,4 +109,15 @@ posts = [
   }
 ]
 
-  module.exports = posts;
+comments = [
+    {
+        id: 0,
+        comment: [
+            "today is a good day to die",
+            "One to cut, one to seal",
+            "Dusk approaches"
+        ]
+    }
+]
+
+  module.exports = {posts, comments};
