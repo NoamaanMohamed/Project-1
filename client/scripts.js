@@ -42,6 +42,28 @@ function showAll() {
 //   const element = document.querySelector("div.row");
 //   element.appendChild(newDiv);
 // }
+
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number').value = value;
+}
+function incrementValue1()
+{
+    var value = parseInt(document.getElementById('number1').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number1').value = value;
+}
+function incrementValue2()
+{
+    var value = parseInt(document.getElementById('number2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number2').value = value;
+}
 function appendPosts(posts) {
   posts.forEach(showPost);
 };
@@ -83,10 +105,12 @@ function showPost(post) {
   newPostFooter.classList.add('postFooter');
   newPostFrame.append(newPostFooter);
 
+  
+
   const newComNumber = document.createElement('p');
   // open with comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
-  newComNumber.innerHTML = `<i class="fas fa-comment"></i> `
+  newComNumber.innerHTML = `<i class="fas fa-comment in"></i> `
   newComNumber.classList.add('card-text');
   newComNumber.setAttribute('data-id', post.id);
   // newComNumber.innerHTML = post.comments.length;
@@ -95,9 +119,28 @@ function showPost(post) {
   // const newCommentSign = document.createElement('i');
   // newCommentSign.classList.add('fas');
   // newCommentSign.classList.add('fa-comment');
-  // newComNumber.append(newCommentSign);         
-};
+  // newComNumber.append(newCommentSign);
 
+  // const newEmoji = document.createElement('p');
+  // newEmoji.innerHTML = `<input type="text" id="number" value="" size ="1"/>
+  // <button onclick="incrementValue()"> &#128541; </button>
+  // <input type="text" id="number1" value=""  size ="1"/>
+  // <button onclick="incrementValue1()"> &#128545; </button>
+  // <input type="text" id="number2" value=""  size ="1"/>
+  // <button onclick="incrementValue2()"> &#128549; </button>`
+  // newEmoji.setAttribute('data-id', post.id);
+  // newEmoji.classList.add('card-text');
+  // newPostFooter.append(newEmoji);
+
+  
+  
+  
+
+
+
+  
+};
+  
 // added by ginger
 function showPostAndComments(postId) {
   document.getElementById('posts').classList.add('hide-section');
