@@ -18,7 +18,9 @@ posts = [
               body: "jnwefjw",
           }
       ],
-      likes: 1,
+      likes1: "1",
+      likes2: "2",
+      likes3: "3",
       gif: "https://media1.giphy.com/media/zvBuF2oYRErVS/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
   },
   {
@@ -27,7 +29,10 @@ posts = [
       body:  "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
       comments: [],
-      likes: "0",
+      likes1: "0",
+      likes2: "0",
+      likes3: "5",
+      gif: ""
       
   },
   {
@@ -36,7 +41,10 @@ posts = [
       body:  "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
       comments: [],
-      likes: "2"
+      likes1: "1",
+      likes2: "1",
+      likes3: "1",
+      gif: ""
   },
   {
       id: 3,
@@ -53,7 +61,9 @@ posts = [
               body: "jnwefjw", 
           }
       ],
-      likes: "1",
+      likes1: "2",
+      likes2: "3",
+      likes3: "0",
       gif: "https://media2.giphy.com/media/dsiv65A5ZSo7YXo8cH/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
   },
   {
@@ -79,7 +89,10 @@ posts = [
               body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
           }
       ],
-      likes: "0"
+      likes1: "0",
+      likes2: "0",
+      likes3: "0",
+      gif: ""
   },
   {
       id: 5,
@@ -92,7 +105,10 @@ posts = [
               body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui."
           }
       ],
-      likes: "6"
+      likes1: "4",
+      likes2: "1",
+      likes3: "3",
+      gif: ""
   },
   {
       id: 6,
@@ -100,7 +116,10 @@ posts = [
       body:  "7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper maximus nulla. Cras rhoncus massa vel enim feugiat porta. Vivamus sed felis velit. In hac habitasse platea dictumst. Morbi sagittis mollis justo a mattis. Etiam id rutrum turpis, eget blandit nulla. Sed id erat nec nulla pretium mollis.",
       date:  "02.01.2021",
       comments: [],
-      likes: "0"
+      likes1: "6",
+      likes2: "2",
+      likes3: "1",
+      gif: ""
   },
   {
       id: 7,
@@ -108,7 +127,10 @@ posts = [
       body:  "8Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
       comments: [],
-      likes: "0"
+      likes1: "1",
+      likes2: "2",
+      likes3: "3",
+      gif: ""
   }
 ]
 
