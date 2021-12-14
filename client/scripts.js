@@ -1,7 +1,7 @@
 
-// const showBtn = document.querySelector("#showAll");
+//const showBtn = document.querySelector("#refAllPosts");
 // const postBtn = document.querySelector("#postBtn");
-// showBtn.addEventListener('click', showAll);
+//showBtn.addEventListener('click', showAll);
 // postBtn.addEventListener('click', sendPost);
 
 showAll();
@@ -43,27 +43,27 @@ function showAll() {
 //   element.appendChild(newDiv);
 // }
 
-function incrementValue()
-{
-    var value = parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number').value = value;
-}
-function incrementValue1()
-{
-    var value = parseInt(document.getElementById('number1').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number1').value = value;
-}
-function incrementValue2()
-{
-    var value = parseInt(document.getElementById('number2').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number2').value = value;
-}
+// function incrementValue()
+// {
+//     var value = parseInt(document.getElementById('number').value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     value++;
+//     document.getElementById('number').value = value;
+// }
+// function incrementValue1()
+// {
+//     var value = parseInt(document.getElementById('number1').value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     value++;
+//     document.getElementById('number1').value = value;
+// }
+// function incrementValue2()
+// {
+//     var value = parseInt(document.getElementById('number2').value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     value++;
+//     document.getElementById('number2').value = value;
+// }
 function appendPosts(posts) {
   posts.forEach(showPost);
 };
