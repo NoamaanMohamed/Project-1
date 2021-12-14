@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch & Post</title>
+    <script defer src ="scripts.js"></script>
+</head>
+<body>
+    <form id="sendPost">
+        <label for="postContent">Type your text here</label>
+        <input type="text" id="postContent" />
+        <input type="submit" value="Post" id="postBtn"/>
+        <input type="submit" value="Show all posts" id="showAll"/>
+    </form>
+   
+    
+    <section id="posts">
+        <h2>All posts</h2>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">Placeholder text</div>
+
+            </div>
+        </div>
+
+       <form id="giphy-form">
+            <label for="giphysearch">Giphy Search</label>
+            <input id="giphysearch" type="text" name="giphysearch" />
+            <button id="btnGiphySearch" type="submit">Get gifs!!!</button>
+        </form>
+        <div class="giphyOut"></div>
+
+
+    </section>
+
+</body>
+
+</html>
