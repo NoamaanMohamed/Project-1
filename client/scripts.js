@@ -4,32 +4,6 @@
 //showBtn.addEventListener('click', showAll);
 // postBtn.addEventListener('click', sendPost);
 
-
-
-function newPost(e){
-  e.preventDefault();
-
-  const postData = {
-    title: e.target.title.value,
-    body: e.target.body.value,
-    date : new Date().toJSON().slice(0, 10),
-  };
-  const options = { 
-    method: 'POST',
-    body: JSON.stringify(postData),
-    headers: {
-        "Content-Type": "application/json"
-    }
-  };
-
-  fetch('http://localhost:3000/posts', options)
-  .then(r => r.json())
-  .then(addAllPosts)
-  .catch(console.warn);
-};
-
-
-
 showAll();
 
 document.addEventListener("click", function(e) {
@@ -177,10 +151,51 @@ function showPostAndComments(postId) {
 //   newComFrame.append(newComment);
 // }
 
-// ######################## GIPHY ###########################################
+const allPosts = document.querySelector('#refAllPosts');
+const newPost = document.querySelector('#refNewPost');
+const getAllPosts = () => {
+  document.getElementById('posts').classList.remove('hide-section');
+  document.getElementById('showPostAndComments').classList.add('hide-section');
+  document.getElementById('addPost').classList.add('hide-section');
+};
+const writeNewPost = () => {
+  document.getElementById('posts').classList.add('hide-section');
+  document.getElementById('showPostAndComments').classList.add('hide-section');
+  document.getElementById('addPost').classList.remove('hide-section');
+}
+allPosts.addEventListener('click', getAllPosts);
+newPost.addEventListener('click', writeNewPost);
+
+
+
+function sendPost(e){
+  e.preventDefault();
+
+  const postData = {
+    body: e.target.body.value,
+    date : new Date().toJSON().slice(0, 10),
+  };
+  const options = { 
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+        "Content-Type": "application/json"
+    }
+  };
+
+  fetch('http://localhost:3000/posts', options)
+  .then(r => r.json())
+  .then(addAllPosts)
+  .catch(console.warn);
+};
+
+
 const giphyForm = document.querySelector('#giphy-form');
             let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
 
+            const init = () => {
+
+            }
             const sendApiRequest = (e) => {
                 e.preventDefault();
                 let userInput = document.getElementById("giphysearch").value;
