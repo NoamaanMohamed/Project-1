@@ -9,7 +9,7 @@ posts = [
   {
       id: 0,
       title: "Day 1",
-      body:  "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
+      body:  "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae",
       date:  "01.01.2021",
       comments: [
           {
@@ -25,7 +25,8 @@ posts = [
               body: "jnwefjw",
           }
       ],
-      likes: 1
+      likes: 1,
+      gif: "https://media1.giphy.com/media/zvBuF2oYRErVS/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
   },
   {
       id: 1,
@@ -33,7 +34,8 @@ posts = [
       body:  "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
       comments: [],
-      likes: "0"
+      likes: "0",
+      
   },
   {
       id: 2,
@@ -58,7 +60,8 @@ posts = [
               body: "jnwefjw", 
           }
       ],
-      likes: "1"
+      likes: "1",
+      gif: "https://media2.giphy.com/media/dsiv65A5ZSo7YXo8cH/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
   },
   {
       id: 4,

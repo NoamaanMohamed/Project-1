@@ -17,7 +17,6 @@
    
     <!-- <script defer src="index1.js"></script> -->
     <script defer src="scripts.js"></script>
-
     
 </head> 
 
@@ -26,7 +25,7 @@
     <div class="navbar navbar-expand-lg navbar-dark">
   
             <a class="navbar-brand" href="#">
-                <img src="" alt="" width="30" height="24">
+                <!-- <img src="" alt="" width="30" height="24"> -->
                 javaSpreadBlog
             </a>
 
@@ -52,17 +51,18 @@
       <div class="container">
         <div class="row allPosts"> 
           
-            <!-- dynamicly -->
+            <!-- dinamically -->
 
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Show Post and Add Comment section -->
   <section id="showPostAndComments" class="hide-section">
 
     <div class="singlePost"></div>
-        <!-- dynamicly -->
+        <!-- dinamically -->
     </div>   
 
     <h3 class="comLabel">Comments:</h3>
@@ -74,19 +74,40 @@
     </div>
 
     <div class="comList">
-        <!-- dynamicly -->
+        <!-- dinamically -->
     </div>
 
   </section>
 
-  <section id="addPost">
-    <form id="giphy-form">
-            <label for="giphysearch">Giphy Search</label>
-            <input id="giphysearch" type="text" name="giphysearch" />
-            <button id="btnGiphySearch" type="submit">Get gifs!!!</button>
-        </form>
+  <!-- Add New Post section -->
+  <section id="addPost" class="hide-section">
+    <form id="submitNewPost">
+        <div>
+          <label for="inputPostTitle" class="form-label postTitle">Title of the post*:</label>
+          <input type="text" maxlength="30" class="form-control" id="inputPostTitle" required placeholder="">
+        </div>
+        
+        <div>
+          <label for="inputPostBody" class="form-label comLabel">Post*:</label>
+          <textarea class="form-control" maxlength="300" id="inputPostBody" rows="5" required></textarea>
+        </div>
+        <div>
+        <!-- <form id="giphy-form"> -->
+                <!-- <label for="giphysearch">Giphy Search</label> -->
+          <input id="giphysearch" type="text" name="giphysearch" placeholder="search giphy by term" />
+                <!-- <button id="btnGiphySearch" type="submit">Get gifs!!!</button> -->
+          <button id="btnGiphySearch" class="btn btn-dark" type="button">getGiphy!</button>
+        <!-- </form> -->
+        </div>
+
         <div class="giphyOut"></div>
 
+        <div>
+          <button class="btn btn-dark btnAddCom" type="submit">addPost</button>
+        </div>
+        
+
+      </form>
   </section>
     
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
