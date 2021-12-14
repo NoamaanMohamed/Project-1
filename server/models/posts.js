@@ -3,7 +3,8 @@ const postsData = require('../data');
 class Post{
     constructor(data){
         this.id = data.id;
-        this.content = data.content;
+        // this.content = data.content;
+        this.body = data.body;
         this.date = data.date;
     }
 
