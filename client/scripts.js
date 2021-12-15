@@ -1,12 +1,22 @@
 
+
+// const showBtn = document.querySelector("#showAll");
+const postBtn = document.querySelector("#postBtn");
+// showBtn.addEventListener('click', showAll);
+// postBtn.addEventListener('click', sendPost);
+
 // -----------CONSTANTS---------------------------
 const ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
 const emojis = ["&#128514;", "&#128293;", "&#128078;"]; 
 
 
+
 // -----------START------------------------------
 // start - section allPosts, fetch the data and show it
 showAll();
+
+
+
 
 // navBar listeners
 document.querySelector("#refNewPost").addEventListener("click", addNewPost);
@@ -14,6 +24,7 @@ document.querySelector("#refAllPosts").addEventListener("submit", showAllPosts);
 
 // SECTION 1 - allPosts listeners
 // click the post
+
 document.addEventListener("click", function(e) {
   // console.log(e.target);
   // console.log(e.target.className);
@@ -24,11 +35,29 @@ document.addEventListener("click", function(e) {
       (e.target && e.target.className == "postGif")    || 
       (e.target && e.target.className == "gifFrame")   || 
       (e.target && e.target.className == "postBody")) {
+
       // console.log(e.target.className)
       // console.log(e.target);
 
       let selectedPostID = e.target.getAttribute('data-id');
       // console.log(selectedPostID);
+
+      console.log(e.target.className);
+      console.log(e.target);
+
+      let selectedPostID = e.target.getAttribute('data-id');
+      console.log(selectedPostID);
+
+      showPostAndComments(selectedPostID);
+  }
+});
+
+
+
+
+
+
+
       appendPostAndComs(selectedPostID );
   }
 });
@@ -51,7 +80,9 @@ document.addEventListener("click", function(e) {
 
 // SECTION 3 - newPost listeners
 document.querySelector('#btnGiphySearch').addEventListener("click", sendApiRequest);
+
 document.querySelector('.btnAddPost').addEventListener("click", postPost);
+
 
 // -----------------FUNCTIONS----------------------
 function showAll() {
@@ -59,9 +90,24 @@ function showAll() {
 
   fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
+
     .then(appendPosts)
     .catch(console.warn);
 }
+
+    .then(appendPosts).catch(console.warn);
+};
+
+// function showPostWithPostId() {
+//   const post;
+//   fetch('http://localhost:3000/posts/:id')
+//     .then(resp => resp.json())
+//     .then(data => post = data)
+//     .then(return post);
+// };
+
+
+
 
 // ----replaced by ginger
 // function appendPosts(posts){
@@ -178,27 +224,14 @@ function showPostAndComs(post) {
 
   console.log(post);
 
+
+  const singlePost = document.querySelector('.singlePost');
+
   document.querySelector('.singlePost').innerHTML = '';
   document.querySelector('.comList').innerHTML = '';
 
-  const singlePost = document.querySelector('.singlePost')
 
-  const newPostTitle = document.createElement('h3');
-  newPostTitle.innerText = post.title;
-  newPostTitle.classList.add('postTitle');
-  singlePost.append(newPostTitle);
 
-  const newPostBody = document.createElement('p');
-  newPostBody.innerText = post.body;
-  newPostBody.classList.add('postBody');
-  singlePost.append(newPostBody);
-
-  const newPostFooter = document.createElement('div');
-  newPostFooter.setAttribute('data-id', post.id);
-  newPostFooter.classList.add('postFooter');
-  singlePost.append(newPostFooter);
-
-  const newComNumber = document.createElement('p');
   // open with fetch comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
   newComNumber.innerHTML = `<i class="fas fa-comment"></i>  `
@@ -210,7 +243,15 @@ function showPostAndComs(post) {
   // console.log(post.comments);
   // post.comments.forEach(comment => showComment(comment));
 }
+
+
+
+
+
+// open after API by ID
+
 // // open with fetch comments
+
 // function showComment(comment) {
 //   const newComFrame = document.createElement('div');
 //   newComFrame.classList.add('comFrame');
@@ -294,6 +335,36 @@ function postPost(e){
 };
 
 
+
+
+const giphyForm = document.querySelector('#giphy-form');
+            let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
+
+            const sendApiRequest = (e) => {
+                e.preventDefault();
+                let userInput = document.getElementById("giphysearch").value;
+                console.log(userInput);
+
+                let giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${ApiKey}`;
+                fetch(giphyApiUrl)
+                    .then( data => {
+                        return data.json();
+                    } )
+                    .then( json => {
+                        console.log(json.data);
+                        console.log("META", json.meta);
+                        console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
+                        let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
+                        let img = document.createElement("img");
+                        img.setAttribute("src", imgPath);
+                        let out = document.querySelector(".giphyOut");
+                        out.insertAdjacentElement("afterbegin", img);
+                        }
+                    )
+            }
+            giphyForm.addEventListener("submit", sendApiRequest);
+
+
 // function sendApiRequest() { 
 // const giphyForm = document.querySelector('#giphy-form');
 
@@ -325,4 +396,47 @@ function sendApiRequest(e) {
     }
 )};
             
+
+
+
+
+
+
+
+
+
+
+
+
+const commentBtn = document.querySelector('#sendComment');
+
+function addAllComments(commentData) {
+  const newDiv = document.createElement('div');
+  newDiv.className = "col-sm";
+  newDiv.textContent = `${commentData.body}`;
+  const element = document.querySelector("div.row");
+  element.appendChild(newDiv);
+}
+
+function newComment(e) {
+  e.preventDefault();
+  const commentData = {
+    body: e.target.body.value
+  };
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(commentData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  console.log(e.target.body.value);
+
+  fetch('http://localhost:3000/posts', options)
+    .then(r => r.json())
+    .then(addAllComments)
+    .catch(console.warn);
+};
+
+commentBtn.addEventListener('submit', newComment);
 

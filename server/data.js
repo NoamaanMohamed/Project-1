@@ -1,4 +1,15 @@
+<<<<<<< HEAD
+
+// posts = [
+//     {id:1, content: "This is the first post of this website" , date:"13/12/2021"},
+//     {id:2, content: "This is the second post of the website" , date:""},
+//     {id:3, content: "Tomorrow we will find out if all we did today was worth it" , date:""}, 
+// ]
+
+let posts = [
+=======
 posts = [
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
   {
       id: 0,
       title: "Day 1",
@@ -134,4 +145,67 @@ posts = [
   }
 ]
 
-  module.exports = posts;
+
+
+
+
+
+
+
+
+let comments = [
+    {
+        id: 0,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat.",
+        postId: 4
+    },
+    {
+        id: 1,
+        body: "jnwefjw hbwbfew",
+        postId: 4
+    },
+    {
+        id: 2,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non.",
+        postId: 4
+    },
+    {
+        id: 3,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
+        postId: 4
+    },
+    {
+        id: 0,
+        body: "nwlenwl",
+        postId: 0
+    },
+    {
+        id: 1,
+        body: "jnwefjw",
+        postId: 0
+    },
+    {
+        id: 2,
+        body: "jnwefjw",
+        postId: 0
+    },
+    {
+        id: 0,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a.",
+        postId: 3
+    },
+    {
+        id: 1,
+        body: "jnwefjw",
+        postId: 5
+    },
+    {
+        id: 0,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui.",
+        postId: 5
+    }
+];
+
+
+
+module.exports = { posts, comments };

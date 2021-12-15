@@ -10,8 +10,10 @@ app.use(cors());
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
+// Retrieve ALL posts
 const postRoutes = require('./controllers/posts');
-app.use('/posts', postRoutes);
+app.use('/', postRoutes);
+
 
 
 
