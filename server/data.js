@@ -5,10 +5,17 @@ posts = [
       title: "Day 1",
       body:  "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae",
       date:  "01.01.2021",
+<<<<<<< HEAD
       likes1: "1",
       likes2: "2",
       likes3: "3",
       gif: "https://media1.giphy.com/media/zvBuF2oYRErVS/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
+=======
+      likes1: "0",
+      likes2: "0",
+      likes3: "0",
+      gif: ""
+>>>>>>> f8d2579bca3064687dc449be96dfab44f9de0a06
   },
   {
       id: 1,
@@ -17,18 +24,17 @@ posts = [
       date:  "02.01.2021",
       likes1: "0",
       likes2: "0",
-      likes3: "5",
+      likes3: "0",
       gif: ""
-      
   },
   {
       id: 2,
       title: "Day 3",
       body:  "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
-      likes1: "1",
-      likes2: "1",
-      likes3: "1",
+      likes1: "0",
+      likes2: "0",
+      likes3: "0",
       gif: ""
   },
 
@@ -57,7 +63,6 @@ posts = [
       title: "Day 6",
       body:  "6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-
       likes1: "4",
       likes2: "1",
       likes3: "3",
@@ -89,53 +94,28 @@ posts = [
 let comments = [
     {
         id: 0,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat.",
-        postId: 4
+        comment: "meesageasjdaksdk",
+        postId: 0
     },
     {
         id: 1,
-        body: "jnwefjw hbwbfew",
-        postId: 4
+        comment: "another message",
+        postId: 0
     },
     {
         id: 2,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non.",
-        postId: 4
+        comment: "message for the second post",
+        postId: 1
     },
     {
         id: 3,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
-        postId: 4
+        comment: "message for the second post x2",
+        postId: 1
     },
     {
-        id: 0,
-        body: "nwlenwl",
+        id: 4,
+        comment: "This belongs to the first post",
         postId: 0
-    },
-    {
-        id: 1,
-        body: "jnwefjw",
-        postId: 0
-    },
-    {
-        id: 2,
-        body: "jnwefjw",
-        postId: 0
-    },
-    {
-        id: 0,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a.",
-        postId: 3
-    },
-    {
-        id: 1,
-        body: "jnwefjw",
-        postId: 5
-    },
-    {
-        id: 0,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui.",
-        postId: 5
     }
 ];
 
