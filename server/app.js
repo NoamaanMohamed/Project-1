@@ -14,7 +14,4 @@ app.get('/', (req, res) => res.send('Hello World!'))
 const postRoutes = require('./controllers/posts');
 app.use('/', postRoutes);
 
-
-
-
 module.exports = app;

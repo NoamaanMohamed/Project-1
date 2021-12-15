@@ -1,15 +1,5 @@
-<<<<<<< HEAD
 
-// posts = [
-//     {id:1, content: "This is the first post of this website" , date:"13/12/2021"},
-//     {id:2, content: "This is the second post of the website" , date:""},
-//     {id:3, content: "Tomorrow we will find out if all we did today was worth it" , date:""}, 
-// ]
-
-let posts = [
-=======
 posts = [
->>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
   {
       id: 0,
       title: "Day 1",
@@ -57,6 +47,7 @@ posts = [
       likes3: "1",
       gif: ""
   },
+
   {
       id: 3,
       title: "Day 4",
@@ -144,13 +135,6 @@ posts = [
       gif: ""
   }
 ]
-
-
-
-
-
-
-
 
 
 let comments = [
