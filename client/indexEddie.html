@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fetch & Post</title>
-    <script defer src ="scripts2.js"></script>
+    <script defer src ="scriptsEddie.js"></script>
 </head>
 <body>
     <form id="sendPost">
@@ -13,10 +13,12 @@
         <input type="text" id="title" />
         <label for="body">Content</label>
         <input type="text" id="body" />
-
         <input type="submit" value="Post"/>
     </form>
-   
+
+    <form id="showComment">
+        <input type="submit" value="Show comment" />
+    </form>
     
     <section id="posts">
         <h2>All posts</h2>
@@ -27,7 +29,13 @@
             </div>
         </div>
     </section>
+    <br />
 
+    <div>
+        <ul id="commentList">
+
+        </ul>
+    </div>
 </body>
 
 </html>

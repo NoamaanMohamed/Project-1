@@ -15,8 +15,8 @@ document.querySelector("#refAllPosts").addEventListener("submit", showAllPosts);
 // SECTION 1 - allPosts listeners
 // click the post
 document.addEventListener("click", function(e) {
-  // console.log(e.target);
-  // console.log(e.target.className);
+  console.log(e.target);
+  console.log(e.target.className);
   if((e.target && e.target.className == "postFrame")   || 
       (e.target && e.target.className == "post")       ||
       (e.target && e.target.className == "postFooter") ||
@@ -55,7 +55,6 @@ document.querySelector('.btnAddPost').addEventListener("click", postPost);
 
 // -----------------FUNCTIONS----------------------
 function showAll() {
-
 
   fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
@@ -132,7 +131,6 @@ function showPost(post) {
 
   const newEmoji1 = document.createElement('p');
   newEmoji1.innerHTML = `<span class="emoji1" data-id="${post.id}">&#128514;</span> ${post.likes1} `
-  // newEmoji1.innerHTML = `<span>&#128514;</span>  `
   newEmoji1.classList.add('emoji1p');
   newEmoji1.setAttribute('data-id', post.id);
   // console.log(newEmoji1.getAttribute("data-id"),"dataid");
@@ -140,14 +138,12 @@ function showPost(post) {
 
   const newEmoji2 = document.createElement('p');
   newEmoji2.innerHTML = `<span class="emoji2" data-id="${post.id}">&#128293;</span> ${post.likes2} `
-  // newEmoji2.innerHTML = `<span>&#128293;</span>  `
   newEmoji2.classList.add('emoji2p');
   newEmoji2.setAttribute('data-id', post.id);
   newPostFooter.append(newEmoji2);
 
   const newEmoji3 = document.createElement('p');
   newEmoji3.innerHTML = `<span class="emoji3" data-id="${post.id}">&#128078;</span> ${post.likes3} `
-  // newEmoji3.innerHTML = `<span>&#128078;</span>  `
   newEmoji3.classList.add('emoji3p');
   newEmoji3.setAttribute('data-id', post.id);
   newPostFooter.append(newEmoji3);
@@ -168,10 +164,13 @@ function appendPostAndComs(postId) {
   fetch(urlIdPostEndpoint)
     .then(resp => resp.json())
     // .then(resp => console.log(resp, "fetch id"))
-    .then(showPostAndComs).catch(console.warn);
+    .then(showPost)
+    .catch(console.warn);
+
+  appendShowComs(postId);  
 };
 
-function showPostAndComs(post) {
+function showPost(post) {
   document.getElementById('posts').classList.add('hide-section');
   document.getElementById('showPostAndComments').classList.remove('hide-section');
   document.getElementById('addPost').classList.add('hide-section');
@@ -190,14 +189,36 @@ function showPostAndComs(post) {
 
   const newPostBody = document.createElement('p');
   newPostBody.innerText = post.body;
+  newPostBody.setAttribute('data-id', post.id);
   newPostBody.classList.add('postBody');
   singlePost.append(newPostBody);
 
   const newPostFooter = document.createElement('div');
-  newPostFooter.setAttribute('data-id', post.id);
+  // newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.classList.add('postFooter');
   singlePost.append(newPostFooter);
+}
 
+function appendShowComs(postId) {
+    fetch('http://localhost:3000/comments')
+    .then(r => r.json())
+    .then(appendComments)
+    .catch(console.warn);
+  };
+
+function appendComments(comments) {
+  postId = document.querySelector(".senglePost .postBody").getAttribute("data-id");
+  console.log("postId");
+  console.log("comments",comments)
+//   const commentsByPost = comments.filter(comment => {
+
+//   })
+
+
+//   comments.forEach(showComment);
+}
+
+function showComment(comment) {
   const newComNumber = document.createElement('p');
   // open with fetch comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
@@ -209,6 +230,7 @@ function showPostAndComs(post) {
   // console.log(post.comments);
   // post.comments.forEach(comment => showComment(comment));
 }
+
 // // open with fetch comments
 // function showComment(comment) {
 //   const newComFrame = document.createElement('div');
@@ -231,16 +253,12 @@ function addNewPost() {
   document.getElementById('posts').classList.add('hide-section');
   document.getElementById('showPostAndComments').classList.add('hide-section');
   document.getElementById('addPost').classList.remove('hide-section');
-
   document.getElementById('submitNewPost').reset();
 }
 // function increases number of likes +1 after the click
 function updateLikes(selectedPostID, emojiNumber) {
   console.log(`".emoji${emojiNumber}"`);  
   console.log(selectedPostID, "selected post id")
-
-  urlIdPostEndpoint = `http://localhost:3000/posts/${selectedPostID}`;
-  console.log(urlIdPostEndpoint);
 
   let emojiSet = document.querySelector(`p.emoji${emojiNumber}p[data-id='${selectedPostID}']`);
   console.log("set ", emojiSet);
@@ -253,46 +271,29 @@ function updateLikes(selectedPostID, emojiNumber) {
   }
   console.log(reactN);
 
-  console.log("inner text", Number(reactN)+1)
-  toString
-  // reactN.innerText = Number(reactN.innerText) + 1;
-  const likesKey = `likes${emojiNumber}`;
+  //  open after PUT method in API 
+  // const likesKey = `likes${emojiNumber}`;
+  // const likesData = {
+  //   // [likesKey]: toString(Number(reactN) + 1)
+  //   likes1: "1"
+  // }
+  // console.log(likesData);
 
-  const likesData = {
-    // [likesKey]: toString(Number(reactN) + 1)
-    likes1: "1"
-  }
-  console.log(likesData);
-  
-  const options = { 
-    method: 'PUT',
-    body: JSON.stringify(likesData),
-    headers: {
-        "Content-Type": "application/json",
-    }
-  };  
+  // const options = { 
+  //   method: 'PUT',
+  //   body: JSON.stringify(likesData),
+  //   headers: {
+  //       "Content-Type": "application/json",
+  //   }
+  // };  
 
-console.log(options)
-
-  fetch(urlIdPostEndpoint, options)
-      // .then(resp => resp.json())
-      // // .then(resp => console.log(resp, "fetch id"))
-      // // .then(showPostAndComs)
-      .catch(console.warn);
-      // .then(function(response) {
-        // console.log(response);
-        // console.log(response.status);
-        // console.log(response.json());
-        // console.log(response.text());
-        // })  
-//       .catch(function(err) { 
-//         console.log('Fetch Error :-S', err);  
-// });
+  // urlIdPostEndpoint = `http://localhost:3000/posts/${selectedPostID}`;
+  // console.log(urlIdPostEndpoint);
+  // fetch(urlIdPostEndpoint, options)
+  //     .then(resp => resp.json())
+  //     .catch(console.warn);
 
   emojiSet.innerHTML = `<span class="emoji${emojiNumber}" data-id="${selectedPostID}">${emojis[emojiNumber-1]}</span>  ${Number(reactN)+1} `
-
-  //#TO DO call post function 
-
 }
 
 // function sends the data from the Post form to the server
@@ -300,6 +301,7 @@ function postPost(e){
   e.preventDefault();
   console.log(document.querySelector("#addPost #inputPostTitle"))
 
+  // does the gyphy empty?
   // (document.querySelector(".giphyOut img").getAttribute("src")? null) 
 
   const postData = {
@@ -365,3 +367,34 @@ function sendApiRequest(e) {
 )};
             
 
+const commentBtn = document.querySelector('#sendComment');
+
+function addAllComments(commentData) {
+  const newDiv = document.createElement('div');
+  newDiv.className = "col-sm";
+  newDiv.textContent = `${commentData.body}`;
+  const element = document.querySelector("div.row");
+  element.appendChild(newDiv);
+}
+
+function newComment(e) {
+  e.preventDefault();
+  const commentData = {
+    body: e.target.body.value
+  };
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(commentData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  console.log(e.target.body.value);
+
+  fetch('http://localhost:3000/posts', options)
+    .then(r => r.json())
+    .then(addAllComments)
+    .catch(console.warn);
+};
+
+commentBtn.addEventListener('submit', newComment);

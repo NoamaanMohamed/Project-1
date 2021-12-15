@@ -1,3 +1,4 @@
+
 posts = [
   {
       id: 0,
@@ -30,6 +31,7 @@ posts = [
       likes3: "1",
       gif: ""
   },
+
   {
       id: 3,
       title: "Day 4",
@@ -83,4 +85,60 @@ posts = [
   }
 ]
 
-  module.exports = posts;
+
+let comments = [
+    {
+        id: 0,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat.",
+        postId: 4
+    },
+    {
+        id: 1,
+        body: "jnwefjw hbwbfew",
+        postId: 4
+    },
+    {
+        id: 2,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non.",
+        postId: 4
+    },
+    {
+        id: 3,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
+        postId: 4
+    },
+    {
+        id: 0,
+        body: "nwlenwl",
+        postId: 0
+    },
+    {
+        id: 1,
+        body: "jnwefjw",
+        postId: 0
+    },
+    {
+        id: 2,
+        body: "jnwefjw",
+        postId: 0
+    },
+    {
+        id: 0,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a.",
+        postId: 3
+    },
+    {
+        id: 1,
+        body: "jnwefjw",
+        postId: 5
+    },
+    {
+        id: 0,
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui.",
+        postId: 5
+    }
+];
+
+
+
+module.exports = { posts, comments };
