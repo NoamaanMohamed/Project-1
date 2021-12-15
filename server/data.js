@@ -5,46 +5,29 @@ posts = [
       title: "Day 1",
       body:  "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae",
       date:  "01.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "nwlenwl"
-          },
-          {
-              id: 1,
-              body: "jnwefjw", 
-          },
-          {
-              id: 2,
-              body: "jnwefjw",
-          }
-      ],
-      likes1: "1",
-      likes2: "2",
-      likes3: "3",
-      gif: "https://media1.giphy.com/media/zvBuF2oYRErVS/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
+      likes1: "0",
+      likes2: "0",
+      likes3: "0",
+      gif: ""
   },
   {
       id: 1,
       title: "Day 2",
       body:  "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [],
       likes1: "0",
       likes2: "0",
-      likes3: "5",
+      likes3: "0",
       gif: ""
-      
   },
   {
       id: 2,
       title: "Day 3",
       body:  "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [],
-      likes1: "1",
-      likes2: "1",
-      likes3: "1",
+      likes1: "0",
+      likes2: "0",
+      likes3: "0",
       gif: ""
   },
 
@@ -53,16 +36,6 @@ posts = [
       title: "Day 4",
       body:  "4Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       date:  "02.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a."
-          },
-          {
-              id: 1,
-              body: "jnwefjw", 
-          }
-      ],
       likes1: "2",
       likes2: "3",
       likes3: "0",
@@ -73,24 +46,6 @@ posts = [
       title: "Day 5",
       body:  "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat."
-          },
-          {
-              id: 1,
-              body: "jnwefjw hbwbfew", 
-          },
-          {
-              id: 2,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non.",
-          },
-          {
-              id: 3,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
-          }
-      ],
       likes1: "0",
       likes2: "0",
       likes3: "0",
@@ -101,12 +56,6 @@ posts = [
       title: "Day 6",
       body:  "6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui."
-          }
-      ],
       likes1: "4",
       likes2: "1",
       likes3: "3",
@@ -117,7 +66,6 @@ posts = [
       title: "Day 7",
       body:  "7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper maximus nulla. Cras rhoncus massa vel enim feugiat porta. Vivamus sed felis velit. In hac habitasse platea dictumst. Morbi sagittis mollis justo a mattis. Etiam id rutrum turpis, eget blandit nulla. Sed id erat nec nulla pretium mollis.",
       date:  "02.01.2021",
-      comments: [],
       likes1: "6",
       likes2: "2",
       likes3: "1",
@@ -128,7 +76,6 @@ posts = [
       title: "Day8",
       body:  "8Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [],
       likes1: "1",
       likes2: "2",
       likes3: "3",
@@ -140,53 +87,28 @@ posts = [
 let comments = [
     {
         id: 0,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat.",
-        postId: 4
+        comment: "meesageasjdaksdk",
+        postId: 0
     },
     {
         id: 1,
-        body: "jnwefjw hbwbfew",
-        postId: 4
+        comment: "another message",
+        postId: 0
     },
     {
         id: 2,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non.",
-        postId: 4
+        comment: "message for the second post",
+        postId: 1
     },
     {
         id: 3,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
-        postId: 4
+        comment: "message for the second post x2",
+        postId: 1
     },
     {
-        id: 0,
-        body: "nwlenwl",
+        id: 4,
+        comment: "This belongs to the first post",
         postId: 0
-    },
-    {
-        id: 1,
-        body: "jnwefjw",
-        postId: 0
-    },
-    {
-        id: 2,
-        body: "jnwefjw",
-        postId: 0
-    },
-    {
-        id: 0,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a.",
-        postId: 3
-    },
-    {
-        id: 1,
-        body: "jnwefjw",
-        postId: 5
-    },
-    {
-        id: 0,
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui.",
-        postId: 5
     }
 ];
 

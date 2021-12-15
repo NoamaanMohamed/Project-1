@@ -16,8 +16,14 @@
         <input type="submit" value="Post"/>
     </form>
 
-    <form id="showComment">
-        <input type="submit" value="Show comment" />
+    <button type="button" id="showComment">Show comments</button>
+
+    <form id="sendComment">
+        <label for="postId">Post Index</label>
+        <input type="number" id="postId" />
+        <label for="comment">Comment</label>
+        <input type="text" id="comment" />
+        <input type="submit" value="Post Comments" />
     </form>
     
     <section id="posts">
@@ -31,11 +37,26 @@
     </section>
     <br />
 
-    <div>
-        <ul id="commentList">
+    <section id="comments">
+        <h2>All comments</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" id="commentDiv"></div>
 
-        </ul>
-    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="firstPost">
+        <h2>Comments that belong to the First Post</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" id="commentDivFirstPost"></div>
+
+            </div>
+        </div>
+    </section>
+
 </body>
 
 </html>
