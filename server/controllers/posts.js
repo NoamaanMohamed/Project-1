@@ -12,6 +12,7 @@ router.post('/', (req,res) => {
     const post = req.body;
     const newPost = Post.create(post);
     res.send({message: `Post number ${newPost.id} request successfully`});
+
 });
 
 router.get('/:id', (req,res) => {
