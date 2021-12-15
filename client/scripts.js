@@ -261,6 +261,8 @@ function postPost(e){
   e.preventDefault();
   console.log(document.querySelector("#addPost #inputPostTitle"))
 
+  // (document.querySelector(".giphyOut img").getAttribute("src")? null) 
+
   const postData = {
     title : document.querySelector("#addPost #inputPostTitle").value,
     body  : document.querySelector("#addPost #inputPostBody").value,
