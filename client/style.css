@@ -14,7 +14,7 @@ body {
     padding-right: 100px;
 }
 
-li a, .navbar a {
+li a, .navbar .navbar-brand {
     color: #ffd484 !important;
     font-size: 24px
 }
@@ -27,7 +27,7 @@ li a, .navbar a {
 }
 
 .postFrame {
-    margin: 20px;
+    margin: 10px 20px 60px 20px;
     border-bottom: 2px solid #544179 !important;
 }
 
@@ -91,7 +91,7 @@ li a, .navbar a {
 
 /* section 2 Post and its comments */
 #showPostAndComments {
-    margin: 100px 30% 0 30% ;
+    margin: 110px 30% 0 30% ;
 }
 
 .comLabel {
@@ -118,7 +118,7 @@ li a, .navbar a {
 
 /* section 3 Add New Post */
 #addPost {
-    margin: 100px 30% 0 30% ;
+    margin: 110px 30% 0 30% ;
 }
 
 #inputPostTitle {
