@@ -10,6 +10,7 @@ class Post{
         this.likes1 = data.likes1;
         this.likes2 = data.likes2;
         this.likes3 = data.likes3;
+        this.gif = data.gif;
     }
 
     static get All(){
@@ -29,7 +30,7 @@ class Post{
     
     static create(post){
         const newPostId = postsData.length;
-        const newPost = new Post({id: newPostId, date: new Date().toJSON().slice(0, 10),comments:[], likes1:"", likes2: "", likes3: "", ...post});
+        const newPost = new Post({id: newPostId, date: new Date().toJSON().slice(0, 10),comments:[], likes1:"0", likes2: "0", likes3: "0", gif:"",...post});
         postsData.push(newPost);
         return newPost;
     }
