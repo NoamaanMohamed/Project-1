@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse just" id="collapsibleNavbar">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a id="refAllPosts" class="nav-link" href="#allPosts">allPosts</a>
+                    <a id="refAllPosts" class="nav-link">allPosts</a>
                   </li>
                   <li class="nav-item">
-                    <a id="refNewPost" class="nav-link" href="#newPost">newPost</a>
+                    <a id="refNewPost" class="nav-link">newPost</a>
                   </li>
                 </ul>
             </div>
@@ -79,7 +79,7 @@
 
   <!-- Add New Post section -->
   <section id="addPost" class="hide-section">
-    <form id="submitNewPost">
+    <form id="submitNewPost" onsubmit="setTimeout(function(){window.location.reload();},10);">
         <div>
           <label for="inputPostTitle" class="form-label postTitle">Title of the post*:</label>
           <input type="text" maxlength="30" class="form-control" id="inputPostTitle" required placeholder="">
@@ -101,7 +101,7 @@
         <div class="giphyOut"></div>
 
         <div>
-          <button class="btn btn-dark btnAddCom" type="submit">addPost</button>
+          <button class="btn btn-dark btnAddPost" type="submit">addPost</button>
         </div>
         
 

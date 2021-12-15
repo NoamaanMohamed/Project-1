@@ -18,6 +18,9 @@ li a, .navbar .navbar-brand {
     color: #ffd484 !important;
     font-size: 24px
 }
+.nav-item {
+    cursor: pointer;
+}
 
 /* section Posts */
 .content {
@@ -35,6 +38,7 @@ li a, .navbar .navbar-brand {
     color: #544179;
     font-weight: bold;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .postBody {
@@ -78,15 +82,24 @@ li a, .navbar .navbar-brand {
 /* post hover */
 .post:hover .postTitle {
     background-color: #544179;
-    color: #ffd484
+    color: #ffd484;
 }
 .post:hover {
     background-color: #544179;
     color: white;
+    border: 3px solid #ffd484;
+    cursor: default;
+}
+
+.post:hover .postFrame {
     border-bottom: 2px solid white !important;
 }
 .post:hover .fa-comment {
     color: white;
+}
+
+.emoji1p, .emoji2p, .emoji3p {
+    cursor: pointer;
 }
 
 /* section 2 Post and its comments */
@@ -99,7 +112,7 @@ li a, .navbar .navbar-brand {
     margin-bottom: 20px;
 }
 
-.btnAddCom {
+.btnAddCom, .btnAddPost {
     display: block;
     background-color: #544179;
     margin-top: 20px;
