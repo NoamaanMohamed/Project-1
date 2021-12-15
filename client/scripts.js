@@ -203,7 +203,6 @@ function showPostAndComs(post) {
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
   newComNumber.innerHTML = `<i class="fas fa-comment"></i>  `
   newComNumber.classList.add('card-text');
-  // open after API by ID
   newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.append(newComNumber);
   // // open with fetch comments
@@ -239,6 +238,10 @@ function addNewPost() {
 function updateLikes(selectedPostID, emojiNumber) {
   console.log(`".emoji${emojiNumber}"`);  
   console.log(selectedPostID, "selected post id")
+
+  urlIdPostEndpoint = `http://localhost:3000/posts/${selectedPostID}`;
+  console.log(urlIdPostEndpoint);
+
   let emojiSet = document.querySelector(`p.emoji${emojiNumber}p[data-id='${selectedPostID}']`);
   console.log("set ", emojiSet);
   var reactN = "";
@@ -249,7 +252,43 @@ function updateLikes(selectedPostID, emojiNumber) {
       }
   }
   console.log(reactN);
-  reactN.innerText == Number(reactN.innerText) + 1;
+
+  console.log("inner text", Number(reactN)+1)
+  toString
+  // reactN.innerText = Number(reactN.innerText) + 1;
+  const likesKey = `likes${emojiNumber}`;
+
+  const likesData = {
+    // [likesKey]: toString(Number(reactN) + 1)
+    likes1: "1"
+  }
+  console.log(likesData);
+  
+  const options = { 
+    method: 'PUT',
+    body: JSON.stringify(likesData),
+    headers: {
+        "Content-Type": "application/json",
+    }
+  };  
+
+console.log(options)
+
+  fetch(urlIdPostEndpoint, options)
+      // .then(resp => resp.json())
+      // // .then(resp => console.log(resp, "fetch id"))
+      // // .then(showPostAndComs)
+      .catch(console.warn);
+      // .then(function(response) {
+        // console.log(response);
+        // console.log(response.status);
+        // console.log(response.json());
+        // console.log(response.text());
+        // })  
+//       .catch(function(err) { 
+//         console.log('Fetch Error :-S', err);  
+// });
+
   emojiSet.innerHTML = `<span class="emoji${emojiNumber}" data-id="${selectedPostID}">${emojis[emojiNumber-1]}</span>  ${Number(reactN)+1} `
 
   //#TO DO call post function 

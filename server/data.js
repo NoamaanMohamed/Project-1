@@ -4,20 +4,6 @@ posts = [
       title: "Day 1",
       body:  "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae",
       date:  "01.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "nwlenwl"
-          },
-          {
-              id: 1,
-              body: "jnwefjw", 
-          },
-          {
-              id: 2,
-              body: "jnwefjw",
-          }
-      ],
       likes1: "1",
       likes2: "2",
       likes3: "3",
@@ -28,7 +14,6 @@ posts = [
       title: "Day 2",
       body:  "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [],
       likes1: "0",
       likes2: "0",
       likes3: "5",
@@ -40,7 +25,6 @@ posts = [
       title: "Day 3",
       body:  "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [],
       likes1: "1",
       likes2: "1",
       likes3: "1",
@@ -51,16 +35,6 @@ posts = [
       title: "Day 4",
       body:  "4Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       date:  "02.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a."
-          },
-          {
-              id: 1,
-              body: "jnwefjw", 
-          }
-      ],
       likes1: "2",
       likes2: "3",
       likes3: "0",
@@ -71,24 +45,6 @@ posts = [
       title: "Day 5",
       body:  "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat."
-          },
-          {
-              id: 1,
-              body: "jnwefjw hbwbfew", 
-          },
-          {
-              id: 2,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non.",
-          },
-          {
-              id: 3,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
-          }
-      ],
       likes1: "0",
       likes2: "0",
       likes3: "0",
@@ -99,12 +55,7 @@ posts = [
       title: "Day 6",
       body:  "6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [
-          {
-              id: 0,
-              body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui."
-          }
-      ],
+
       likes1: "4",
       likes2: "1",
       likes3: "3",
@@ -115,7 +66,6 @@ posts = [
       title: "Day 7",
       body:  "7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper maximus nulla. Cras rhoncus massa vel enim feugiat porta. Vivamus sed felis velit. In hac habitasse platea dictumst. Morbi sagittis mollis justo a mattis. Etiam id rutrum turpis, eget blandit nulla. Sed id erat nec nulla pretium mollis.",
       date:  "02.01.2021",
-      comments: [],
       likes1: "6",
       likes2: "2",
       likes3: "1",
@@ -126,7 +76,6 @@ posts = [
       title: "Day8",
       body:  "8Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
       date:  "02.01.2021",
-      comments: [],
       likes1: "1",
       likes2: "2",
       likes3: "3",
