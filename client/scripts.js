@@ -9,14 +9,14 @@ const emojis = ["&#128514;", "&#128293;", "&#128078;"];
 showAll();
 
 // navBar listeners
+document.querySelector("#refAllPosts").addEventListener("click", showSectionAllPosts);
 document.querySelector("#refNewPost").addEventListener("click", addNewPost);
-document.querySelector("#refAllPosts").addEventListener("submit", showAllPosts);
 
 // SECTION 1 - allPosts listeners
 // click the post
 document.addEventListener("click", function(e) {
-  console.log(e.target);
-  console.log(e.target.className);
+  // console.log(e.target);
+  // console.log(e.target.className);
   if((e.target && e.target.className == "postFrame")   || 
       (e.target && e.target.className == "post")       ||
       (e.target && e.target.className == "postFooter") ||
@@ -28,8 +28,8 @@ document.addEventListener("click", function(e) {
       // console.log(e.target);
 
       let selectedPostID = e.target.getAttribute('data-id');
-      // console.log(selectedPostID);
-      appendPostAndComs(selectedPostID );
+      console.log("show single post: ",selectedPostID);
+      appendPostAndComs(selectedPostID);
   }
 });
 // click emoji
@@ -47,47 +47,59 @@ document.addEventListener("click", function(e) {
 });
 
 // SECTION 2 - singlePost&Comments listeners
-
+document.querySelector("#sendComment").addEventListener("click", addNewComment);
 
 // SECTION 3 - newPost listeners
-document.querySelector('#btnGiphySearch').addEventListener("click", sendApiRequest);
+document.querySelector('#btnGiphySearch').addEventListener("click", getGiphy);
 document.querySelector('.btnAddPost').addEventListener("click", postPost);
 
 // -----------------FUNCTIONS----------------------
-function showAll() {
 
+// function shows section 1 - allPosts, and hides the other sections
+// Uses for switching between sections without submitting new post or comment data
+function showSectionAllPosts() {
+  document.getElementById('posts').classList.remove('hide-section');
+  document.getElementById('showPostAndComments').classList.add('hide-section');
+  document.getElementById('addPost').classList.add('hide-section');
+}
+
+// function shows section 2 - selectedPost, and hides the other sections
+function showSectionSelectedPost() {
+  document.getElementById('posts').classList.add('hide-section');
+  document.getElementById('showPostAndComments').classList.remove('hide-section');
+  document.getElementById('addPost').classList.add('hide-section');
+}
+
+// function shows section 3 - newPost, and hides the other sections
+function addNewPost() {
+  document.getElementById('posts').classList.add('hide-section');
+  document.getElementById('showPostAndComments').classList.add('hide-section');
+  document.getElementById('addPost').classList.remove('hide-section');
+  document.getElementById('submitNewPost').reset();
+}
+
+// function gets all posts data from server and calls function appendPost to show them 
+function showAll() {
   fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
     .then(appendPosts)
     .catch(console.warn);
 }
-
-// ----replaced by ginger
-// function appendPosts(posts){
-//   posts.forEach(addAllPosts);
-// };
-
-// function addAllPosts(postData) {
-//   const newDiv = document.createElement('div');
-//   newDiv.className = "col-sm";
-//   newDiv.textContent = `${postData.body}`;
-//   const element = document.querySelector("div.row");
-//   element.appendChild(newDiv);
-// }
+// helping function for showAll
+// calls function showPost for every post
 function appendPosts(posts) {
-  document.getElementById('posts').classList.remove('hide-section');
-  document.getElementById('showPostAndComments').classList.add('hide-section');
-  document.getElementById('addPost').classList.add('hide-section');
+  showSectionAllPosts();
+  // clean the section 1 before loading new post data
   document.querySelector(".allPosts").innerHTML = "";
-
   posts.forEach(showPost);
 };
 
+// helping function for showPost
+// creates html elements to show post as a column in a row 
 function showPost(post) {
-  // console.log(post);
+  console.log(post);
 
   const postGrid = document.querySelector(".allPosts");
-  // console.log(postGrid);
 
   const newPost = document.createElement('div');
   newPost.classList.add('col-md-4');
@@ -157,24 +169,28 @@ function showPost(post) {
   newPostFooter.append(newComNumber);        
 };
 
-// added by ginger
-function appendPostAndComs(postId) {
-  urlIdPostEndpoint = `http://localhost:3000/posts/${postId}`;
-  console.log(urlIdPostEndpoint);
-  fetch(urlIdPostEndpoint)
-    .then(resp => resp.json())
-    // .then(resp => console.log(resp, "fetch id"))
-    .then(showPost)
-    .catch(console.warn);
+// function gets the post data from the server by its ID and calls function showSinglePost 
+// and then calls function get comments
+// function appendPostAndComs(postId) {
+//   urlIdPostEndpoint = `http://localhost:3000/posts/${postId}`;
+  // console.log(urlIdPostEndpoint);
+  // fetch(urlIdPostEndpoint)
+  //   .then(resp => resp.json())
+  //   .then(showSinglePost)
+  //   .catch(console.warn);
+async function appendPostAndComs(postId) {
+  const response = await fetch(`http://localhost:3000/posts/${postId}`);
+  const data = await response.json();
+  showSinglePost(data);
+  console.log(data);
 
-  appendShowComs(postId);  
+  getComments(postId);  
 };
 
-function showPost(post) {
-  document.getElementById('posts').classList.add('hide-section');
-  document.getElementById('showPostAndComments').classList.remove('hide-section');
-  document.getElementById('addPost').classList.add('hide-section');
-
+// helping function for appendPostAndComs
+// creates html elements for the selected post 
+function showSinglePost(post) {
+  showSectionSelectedPost();
   console.log(post);
 
   document.querySelector('.singlePost').innerHTML = '';
@@ -193,68 +209,89 @@ function showPost(post) {
   newPostBody.classList.add('postBody');
   singlePost.append(newPostBody);
 
+  const newGifFrame = document.createElement('div');
+  newGifFrame.classList.add("gifFrame");
+  singlePost.append(newGifFrame);
+
+  const newPostGif = document.createElement('img');
+  newPostGif.setAttribute("src", post.gif);
+  newPostGif.classList.add('postGif');
+  newGifFrame.append(newPostGif);
+
   const newPostFooter = document.createElement('div');
   // newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.classList.add('postFooter');
   singlePost.append(newPostFooter);
 }
 
-function appendShowComs(postId) {
-    fetch('http://localhost:3000/comments')
+// functiont gets all comments from the server
+function getComments(postId) {
+   console.log(`http://localhost:3000/posts/${postId}/comments`);
+    fetch(`http://localhost:3000/posts/${postId}/comments`)
     .then(r => r.json())
     .then(appendComments)
-    .catch(console.warn);
+    .catch(console.warn)
   };
 
+// function creates elements for number of comments and calls the showComment for every comment
 function appendComments(comments) {
-  postId = document.querySelector(".senglePost .postBody").getAttribute("data-id");
-  console.log("postId");
-  console.log("comments",comments)
-//   const commentsByPost = comments.filter(comment => {
-
-//   })
-
-
-//   comments.forEach(showComment);
-}
-
-function showComment(comment) {
   const newComNumber = document.createElement('p');
-  // open with fetch comments
-  // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
-  newComNumber.innerHTML = `<i class="fas fa-comment"></i>  `
+  newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${comments.length} `
   newComNumber.classList.add('card-text');
-  newPostFooter.setAttribute('data-id', post.id);
-  newPostFooter.append(newComNumber);
-  // // open with fetch comments
-  // console.log(post.comments);
-  // post.comments.forEach(comment => showComment(comment));
+  document.querySelector(".singlePost .postFooter").append(newComNumber);
+
+  comments.forEach(comment => showComment(comment));
 }
 
-// // open with fetch comments
-// function showComment(comment) {
-//   const newComFrame = document.createElement('div');
-//   newComFrame.classList.add('comFrame');
-//   document.querySelector('.comList').append(newComFrame);
+// helping function for appendComment
+// function creates elements for the comment
+function showComment(comment) {
+  const newComFrame = document.createElement('div');
+  newComFrame.classList.add('comFrame');
+  document.querySelector('.comList').append(newComFrame);
 
-//   const newComment = document.createElement('p');
-//   newComment.innerHTML = comment.body;
-//   newComment.classList.add('comment');
-//   newComFrame.append(newComment);
-// }
-
-function showAllPosts() {
-  document.getElementById('posts').classList.remove('hide-section');
-  document.getElementById('showPostAndComments').classList.add('hide-section');
-  document.getElementById('addPost').classList.add('hide-section');
+  const newComment = document.createElement('p');
+  newComment.innerHTML = comment.comment;
+  newComment.classList.add('comment');
+  newComFrame.append(newComment);
 }
 
-function addNewPost() {
-  document.getElementById('posts').classList.add('hide-section');
-  document.getElementById('showPostAndComments').classList.add('hide-section');
-  document.getElementById('addPost').classList.remove('hide-section');
-  document.getElementById('submitNewPost').reset();
-}
+// TODO function sends new comment to the server and refreshes section 
+function addNewComment(e) {
+  e.preventDefault();
+
+  console.log("button pressed")
+  // get post ID
+  postId = document.querySelector(".singlePost .postBody").getAttribute("data-id");
+  console.log("postId", postId);
+  const newComment = document.querySelector(".newComment").value;
+  console.log(newComment);
+  const commentData = {
+    comment: newComment,
+    postId: postId
+  };
+  console.log(commentData);
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(commentData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  fetch('http://localhost:3000/comments', options)
+    .then(r => r.json())
+    // .then(appendComments)
+    .catch(console.warn);
+  
+  window.location.reload();  
+  appendPostAndComs(postId);
+};
+
+
+
+
 // function increases number of likes +1 after the click
 function updateLikes(selectedPostID, emojiNumber) {
   console.log(`".emoji${emojiNumber}"`);  
@@ -271,7 +308,7 @@ function updateLikes(selectedPostID, emojiNumber) {
   }
   console.log(reactN);
 
-  //  open after PUT method in API 
+  // TODO open after PUT method for likes in API 
   // const likesKey = `likes${emojiNumber}`;
   // const likesData = {
   //   // [likesKey]: toString(Number(reactN) + 1)
@@ -296,12 +333,12 @@ function updateLikes(selectedPostID, emojiNumber) {
   emojiSet.innerHTML = `<span class="emoji${emojiNumber}" data-id="${selectedPostID}">${emojis[emojiNumber-1]}</span>  ${Number(reactN)+1} `
 }
 
-// function sends the data from the Post form to the server
+// function sends data of the new post to the server and refreshes page
 function postPost(e){
   e.preventDefault();
   console.log(document.querySelector("#addPost #inputPostTitle"))
 
-  // does the gyphy empty?
+  // #TODO does the gyphy empty?
   // (document.querySelector(".giphyOut img").getAttribute("src")? null) 
 
   const postData = {
@@ -313,7 +350,6 @@ function postPost(e){
     // likes3: "0"
     gif   : document.querySelector(".giphyOut img").getAttribute("src")
   };
-
   console.log(postData)
 
   const options = { 
@@ -330,15 +366,11 @@ function postPost(e){
   .catch(console.warn);
 
   window.location.reload();
-  // showAll();
-
+ 
 };
 
-
-// function sendApiRequest() { 
-// const giphyForm = document.querySelector('#giphy-form');
-
-function sendApiRequest(e) {
+// function gets one random gif using API
+function getGiphy(e) {
 // const sendApiRequest = (e) => {
   console.log("gif")
     e.preventDefault();
@@ -353,8 +385,6 @@ function sendApiRequest(e) {
     } )
     .then( json => {
       console.log(json.data);
-      // console.log("META", json.meta);
-      // console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
       let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
       console.log(imgPath)
       let img = document.createElement("img");
@@ -367,34 +397,34 @@ function sendApiRequest(e) {
 )};
             
 
-const commentBtn = document.querySelector('#sendComment');
+// const commentBtn = document.querySelector('#sendComment');
 
-function addAllComments(commentData) {
-  const newDiv = document.createElement('div');
-  newDiv.className = "col-sm";
-  newDiv.textContent = `${commentData.body}`;
-  const element = document.querySelector("div.row");
-  element.appendChild(newDiv);
-}
+// function addAllComments(commentData) {
+//   const newDiv = document.createElement('div');
+//   newDiv.className = "col-sm";
+//   newDiv.textContent = `${commentData.body}`;
+//   const element = document.querySelector("div.row");
+//   element.appendChild(newDiv);
+// }
 
-function newComment(e) {
-  e.preventDefault();
-  const commentData = {
-    body: e.target.body.value
-  };
-  const options = {
-    method: 'POST',
-    body: JSON.stringify(commentData),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-  console.log(e.target.body.value);
+// function newComment(e) {
+//   e.preventDefault();
+//   const commentData = {
+//     body: e.target.body.value
+//   };
+//   const options = {
+//     method: 'POST',
+//     body: JSON.stringify(commentData),
+//     headers: {
+//       "Content-Type": "application/json"
+//     }
+//   };
+//   console.log(e.target.body.value);
 
-  fetch('http://localhost:3000/posts', options)
-    .then(r => r.json())
-    .then(addAllComments)
-    .catch(console.warn);
-};
+//   fetch('http://localhost:3000/posts', options)
+//     .then(r => r.json())
+//     .then(addAllComments)
+//     .catch(console.warn);
+// };
 
-commentBtn.addEventListener('submit', newComment);
+// commentBtn.addEventListener('submit', newComment);

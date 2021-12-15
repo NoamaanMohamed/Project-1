@@ -27,16 +27,16 @@
                 javaSpreadBlog
             </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
+              </button> 
 
             <div class="collapse navbar-collapse just" id="collapsibleNavbar">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
                     <a id="refAllPosts" class="nav-link">allPosts</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ms auto">
                     <a id="refNewPost" class="nav-link">newPost</a>
                   </li>
                 </ul>
@@ -65,10 +65,10 @@
     
     <h3 class="comLabel">Comments:</h3>
     <div class="input-group">
-        <textarea class="form-control newComment" aria-label="With textarea"></textarea>
+        <textarea class="form-control newComment" required aria-label="With textarea"></textarea>
     </div>
     <div>
-        <button id="sendComment" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
+        <button id="sendComment" maxlength="100" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
     </div>
 
     <div class="comList">
@@ -90,12 +90,8 @@
           <textarea class="form-control" maxlength="300" id="inputPostBody" rows="5" required></textarea>
         </div>
         <div>
-        <!-- <form id="giphy-form"> -->
-                <!-- <label for="giphysearch">Giphy Search</label> -->
           <input id="giphysearch" type="text" name="giphysearch" placeholder="search giphy by term" />
-                <!-- <button id="btnGiphySearch" type="submit">Get gifs!!!</button> -->
           <button id="btnGiphySearch" class="btn btn-dark" type="button">getGiphy!</button>
-        <!-- </form> -->
         </div>
 
         <div class="giphyOut"></div>
