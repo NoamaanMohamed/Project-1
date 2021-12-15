@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhatt Cohort Blog</title>
    
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/71e5f7b832.js" crossorigin="anonymous"></script>
 
@@ -17,18 +16,16 @@
    
     <!-- <script defer src="index1.js"></script> -->
     <script defer src="scripts.js"></script>
-
     
 </head> 
 
 <body>
-
     <div class="navbar navbar-expand-lg navbar-dark">
   
-            <a class="navbar-brand" href="#">
-                <img src="" alt="" width="30" height="24">
+            <div class="navbar-brand" href="#">
+                <!-- <img src="" alt="" width="30" height="24"> -->
                 javaSpreadBlog
-            </a>
+            </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,10 +34,10 @@
             <div class="collapse navbar-collapse just" id="collapsibleNavbar">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a id="refAllPosts" class="nav-link" href="#allPosts">allPosts</a>
+                    <a id="refAllPosts" class="nav-link">allPosts</a>
                   </li>
                   <li class="nav-item">
-                    <a id="refNewPost" class="nav-link" href="#newPost">newPost</a>
+                    <a id="refNewPost" class="nav-link">newPost</a>
                   </li>
                 </ul>
             </div>
@@ -51,41 +48,64 @@
       <div class="container">
         <div class="row allPosts"> 
           
-            <!-- dynamicly -->
+            <!-- dinamically -->
 
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Show Post and Add Comment section -->
   <section id="showPostAndComments" class="hide-section">
 
     <div class="singlePost"></div>
-        <!-- dynamicly -->
+        <!-- dinamically -->
     </div>   
 
+    
     <h3 class="comLabel">Comments:</h3>
     <div class="input-group">
         <textarea class="form-control newComment" aria-label="With textarea"></textarea>
     </div>
     <div>
-        <button class="btn btn-dark btnAddCom" type="button">Add comment</button>
+        <button id="sendComment" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
     </div>
 
     <div class="comList">
-        <!-- dynamicly -->
+        <!-- dinamically -->
     </div>
 
   </section>
 
-  <section id="addPost">
-    <form id="giphy-form">
-            <label for="giphysearch">Giphy Search</label>
-            <input id="giphysearch" type="text" name="giphysearch" />
-            <button id="btnGiphySearch" type="submit">Get gifs!!!</button>
-        </form>
+  <!-- Add New Post section -->
+  <section id="addPost" class="hide-section">
+    <form id="submitNewPost" onsubmit="setTimeout(function(){window.location.reload();},10);">
+        <div>
+          <label for="inputPostTitle" class="form-label postTitle">Title of the post*:</label>
+          <input type="text" maxlength="30" class="form-control" id="inputPostTitle" required placeholder="">
+        </div>
+        
+        <div>
+          <label for="inputPostBody" class="form-label comLabel">Post*:</label>
+          <textarea class="form-control" maxlength="300" id="inputPostBody" rows="5" required></textarea>
+        </div>
+        <div>
+        <!-- <form id="giphy-form"> -->
+                <!-- <label for="giphysearch">Giphy Search</label> -->
+          <input id="giphysearch" type="text" name="giphysearch" placeholder="search giphy by term" />
+                <!-- <button id="btnGiphySearch" type="submit">Get gifs!!!</button> -->
+          <button id="btnGiphySearch" class="btn btn-dark" type="button">getGiphy!</button>
+        <!-- </form> -->
+        </div>
+
         <div class="giphyOut"></div>
 
+        <div>
+          <button class="btn btn-dark btnAddPost" type="submit">addPost</button>
+        </div>
+        
+
+      </form>
   </section>
     
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

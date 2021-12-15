@@ -3,6 +3,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.hide-section {
+    display: none;
+}
+
 /* navbar */
 .navbar {
     background-color: #544179;
@@ -10,12 +14,15 @@ body {
     padding-right: 100px;
 }
 
-li a, .navbar a {
+li a, .navbar .navbar-brand {
     color: #ffd484 !important;
     font-size: 24px
 }
+.nav-item {
+    cursor: pointer;
+}
 
-/* posts */
+/* section Posts */
 .content {
     margin: 100px;
     /* padding: 30px; */
@@ -23,22 +30,34 @@ li a, .navbar a {
 }
 
 .postFrame {
-    margin: 20px;
+    margin: 10px 20px 60px 20px;
     border-bottom: 2px solid #544179 !important;
 }
-
-/* .post {
-    /* margin: 20px; */
-
 
 .postTitle, .comLabel {
     color: #544179;
     font-weight: bold;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .postBody {
     text-align: justify;
+    display: block;
+}
+
+.postGif {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 1140px){
+    .postGif {
+        width: 150px;
+    }
 }
 
 .fa-comment {
@@ -47,29 +66,45 @@ li a, .navbar a {
 
 .postFooter {
     display: inline-block;
+    margin-top: 10px;
 }
 
-/* styling post hover */
+.postFooter p {
+    display: inline-block;
+    /* margin-top: 10px; */
+}
+
+.numCom {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+/* post hover */
 .post:hover .postTitle {
     background-color: #544179;
-    color: #ffd484
+    color: #ffd484;
 }
 .post:hover {
     background-color: #544179;
     color: white;
+    border: 3px solid #ffd484;
+    cursor: default;
+}
+
+.post:hover .postFrame {
     border-bottom: 2px solid white !important;
 }
 .post:hover .fa-comment {
     color: white;
 }
 
-.hide-section {
-    display: none;
+.emoji1p, .emoji2p, .emoji3p {
+    cursor: pointer;
 }
 
-/* page 2 post and its comments */
+/* section 2 Post and its comments */
 #showPostAndComments {
-    margin: 100px 30% 0 30% ;
+    margin: 110px 30% 0 30% ;
 }
 
 .comLabel {
@@ -77,7 +112,7 @@ li a, .navbar a {
     margin-bottom: 20px;
 }
 
-.btnAddCom {
+.btnAddCom, .btnAddPost {
     display: block;
     background-color: #544179;
     margin-top: 20px;
@@ -92,4 +127,33 @@ li a, .navbar a {
     text-align: justify;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+/* section 3 Add New Post */
+#addPost {
+    margin: 110px 30% 0 30% ;
+}
+
+#inputPostTitle {
+    font-size: x-large;
+    border: 2px solid #544179;
+    /* font-style: italic; */
+    /* font-weight: 600; */
+}
+
+#inputPostBody {
+    border: 2px solid #544179;
+}
+
+#giphysearch {
+    border: 1px solid #544179;
+}
+
+#btnGiphySearch {
+    display:inline;
+    background-color: #544179;
+    /* margin-top: 20px;
+    margin-bottom: 40px; */
+    margin-right: 0;
+    margin-left: auto;
 }
