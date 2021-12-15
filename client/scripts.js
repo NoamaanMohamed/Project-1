@@ -171,6 +171,9 @@ function showPostAndComs(post) {
 
   console.log(post);
 
+  document.querySelector('.singlePost').innerHTML = '';
+  document.querySelector('.comList').innerHTML = '';
+
   const singlePost = document.querySelector('.singlePost')
 
   const newPostTitle = document.createElement('h3');
