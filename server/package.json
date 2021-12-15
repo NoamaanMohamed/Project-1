@@ -2,12 +2,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-<<<<<<< HEAD
-    "test": "jest --watchAll"
-=======
     "test": "jest --silent --watchAll",
     "coverage": "jest --coverage --silent"
->>>>>>> f8d2579bca3064687dc449be96dfab44f9de0a06
   },
   "dependencies": {
     "body-parser": "^1.19.1",
@@ -24,11 +20,6 @@
   "devDependencies": {
     "express": "^4.17.1",
     "jest": "^27.4.5",
-<<<<<<< HEAD
-    "nodemon": "^2.0.15",
-    "supertest": "^6.1.6"
-=======
     "nodemon": "^2.0.15"
->>>>>>> f8d2579bca3064687dc449be96dfab44f9de0a06
   }
 }
