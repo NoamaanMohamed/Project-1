@@ -5,17 +5,10 @@ posts = [
       title: "Day 1",
       body:  "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae",
       date:  "01.01.2021",
-<<<<<<< HEAD
-      likes1: "1",
-      likes2: "2",
-      likes3: "3",
-      gif: "https://media1.giphy.com/media/zvBuF2oYRErVS/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
-=======
       likes1: "0",
       likes2: "0",
       likes3: "0",
       gif: ""
->>>>>>> f8d2579bca3064687dc449be96dfab44f9de0a06
   },
   {
       id: 1,
