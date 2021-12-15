@@ -3,14 +3,21 @@ const postsData = require('../data');
 class Comment{
     constructor(data){
         this.id = data.id;
-        this.comment = data.comment;
+        this.commentList = data.commentList;
     };
 
     static get All(){
         const comments = postsData.comments.map((comment) => new Comment(comment));
         return comments;
     };
-}
+
+    static createCommentList(comment){
+        const listId = postsData.comments.length;
+        const newList = new Comment({id: listId, commentList: [], ...comment});
+        postsData.comments.push(newList);
+        return newList;
+    };
+};
 
 class Post{
     constructor(data){
@@ -41,8 +48,9 @@ class Post{
     
     static create(post){
         const newPostId = postsData.posts.length;
-        const newPost = new Post({id: newPostId, date: new Date().toJSON().slice(0, 10),comments:[], likes1:"", likes2: "", likes3: "", ...post});
+        const newPost = new Post({id: newPostId, title: '', body:'', date: new Date().toUTCString(), comments:[], likes1:"", likes2: "", likes3: "", ...post});
         postsData.posts.push(newPost);
+        console.log(newPost);
         return newPost;
     };
 
