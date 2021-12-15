@@ -19,7 +19,10 @@ const posts = [
                 body: "jnwefjw",
             }
         ],
-        likes: 1
+        likes1: "1",
+        likes2: "2",
+        likes3: "0",
+        gif: "https://media1.giphy.com/media/zvBuF2oYRErVS/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
     },
     {
         id: 1,
@@ -27,7 +30,10 @@ const posts = [
         body:  "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,",
         date:  "02.01.2021",
         comments: [],
-        likes: "0"
+        likes1: "0",
+        likes2: "2",
+        likes3: "0",
+        gif: ""
     },
     {
         id: 2,
@@ -35,7 +41,10 @@ const posts = [
         body:  "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,Dolorem deleniti quae,",
         date:  "02.01.2021",
         comments: [],
-        likes: "2"
+        likes1: "1",
+        likes2: "0",
+        likes3: "0",
+        gif: ""
     },
     {
         id: 3,
@@ -52,7 +61,10 @@ const posts = [
                 body: "jnwefjw", 
             }
         ],
-        likes: "1"
+        likes1: "1",
+        likes2: "1",
+        likes3: "1",
+        gif: "https://media2.giphy.com/media/dsiv65A5ZSo7YXo8cH/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g"
     },
     {
         id: 4,
@@ -77,7 +89,10 @@ const posts = [
                 body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus.",
             }
         ],
-        likes: "0"
+        likes1: "2",
+        likes2: "2",
+        likes3: "0",
+        gif: ""
     },
     {
         id: 5,
@@ -90,7 +105,10 @@ const posts = [
                 body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui."
             }
         ],
-        likes: "6"
+        likes1: "1",
+        likes2: "2",
+        likes3: "3",
+        gif: ""
     },
     {
         id: 6,
@@ -98,7 +116,10 @@ const posts = [
         body:  "7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper maximus nulla. Cras rhoncus massa vel enim feugiat porta. Vivamus sed felis velit. In hac habitasse platea dictumst. Morbi sagittis mollis justo a mattis. Etiam id rutrum turpis, eget blandit nulla. Sed id erat nec nulla pretium mollis.",
         date:  "02.01.2021",
         comments: [],
-        likes: "0"
+        likes1: "1",
+        likes2: "0",
+        likes3: "5",
+        gif: ""
     },
     {
         id: 7,
@@ -106,23 +127,29 @@ const posts = [
         body:  "8Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem deleniti quae,",
         date:  "02.01.2021",
         comments: [],
-        likes: "0"
+        likes1: "3",
+        likes2: "3",
+        likes3: "3",
+        gif: ""
     }
 ]
 
 
 showAllPosts(posts);
 
+// document.querySelector("refAllPosts").addEventListener("click", showAllPosts(posts));
+document.querySelector("#refNewPost").addEventListener("click", addNewPost);
+
 document.addEventListener("click", function(e) {
-    // console.log(e.target);
-    // console.log(e.target.className);
-    if((e.target && e.target.className == "postFrame")   || 
+    console.log(e.target.className)
+    if ((e.target && e.target.className == "postFrame")  || 
         (e.target && e.target.className == "post")       ||
         (e.target && e.target.className == "postFooter") ||
         (e.target && e.target.className == "postTitle")  || 
+        (e.target && e.target.className == "postGif")    || 
+        (e.target && e.target.className == "gifFrame")   || 
+        (e.target && e.target.className == "emoji")      || 
         (e.target && e.target.className == "postBody")) {
-        console.log(e.target.className)
-        console.log(e.target);
 
         let selectedPostID = e.target.getAttribute('data-id');
         console.log(selectedPostID);
@@ -130,7 +157,21 @@ document.addEventListener("click", function(e) {
     }
 });
 
-//-------- posts flow------------------------------
+document.addEventListener("click", function(e) {
+    console.log(e.target.className)
+    if ((e.target && e.target.className == "emoji1") ||
+        (e.target && e.target.className == "emoji2") ||
+        (e.target && e.target.className == "emoji3")) {
+
+        let selectedPostID = e.target.getAttribute('data-id');
+        console.log(selectedPostID);
+        console.log(e.target.className[5]);
+        updateLikes(selectedPostID, e.target.className[5]);
+    }
+});
+
+
+//---------------- POSTS FLOW------------------------------
 function showAllPosts(posts) {
     posts.forEach(post => showPost(post));
 };
@@ -167,22 +208,49 @@ function showPost(post) {
     newPostBody.classList.add('postBody');
     newPostFrame.append(newPostBody);
 
+    const newGifFrame = document.createElement('div');
+    newGifFrame.classList.add("gifFrame");
+    newPostFrame.append(newGifFrame);
+
+    const newPostGif = document.createElement('img');
+    newPostGif.setAttribute("src", post.gif);
+    newPostGif.classList.add('postGif');
+    newGifFrame.append(newPostGif);
+
     const newPostFooter = document.createElement('div');
     newPostFooter.setAttribute('data-id', post.id);
     newPostFooter.classList.add('postFooter');
     newPostFrame.append(newPostFooter);
 
+    const newEmoji1 = document.createElement('p');
+    // open with comments
+    newEmoji1.innerHTML = `<span class="emoji1" data-id="${post.id}">&#128514;</span>  ${post.likes1} `
+    // newEmoji1.innerHTML = `<span>&#128514;</span> `
+    newEmoji1.classList.add('emoji1');
+    newEmoji1.setAttribute('data-id', post.id);
+    newPostFooter.append(newEmoji1);
+
+    const newEmoji2 = document.createElement('p');
+    // open with comments
+    newEmoji2.innerHTML = `<span class="emoji2" data-id="${post.id}">&#128293;</span>  ${post.likes2} `
+    // newEmoji2.innerHTML = `<span class="emoji">&#128293;</span> `
+    newEmoji2.classList.add('emoji2');
+    newEmoji2.setAttribute('data-id', post.id);
+    newPostFooter.append(newEmoji2);
+
+    const newEmoji3 = document.createElement('p');
+    // open with comments
+    newEmoji3.innerHTML = `<span class="emoji3" data-id="${post.id}">&#128078;</span>  ${post.likes3} `
+    // newEmoji3.innerHTML = `<span>&#128078;</span> `
+    newEmoji3.classList.add('emoji3');
+    newEmoji3.setAttribute('data-id', post.id);
+    newPostFooter.append(newEmoji3);
+
     const newComNumber = document.createElement('p');
     newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
-    newComNumber.classList.add('card-text');
+    newComNumber.classList.add('numCom');
     newComNumber.setAttribute('data-id', post.id);
-    // newComNumber.innerHTML = post.comments.length;
-    newPostFooter.append(newComNumber);
-
-    // const newCommentSign = document.createElement('i');
-    // newCommentSign.classList.add('fas');
-    // newCommentSign.classList.add('fa-comment');
-    // newComNumber.append(newCommentSign);         
+    newPostFooter.append(newComNumber);         
 };
 
 function showPostAndComments(postId) {
@@ -242,3 +310,34 @@ function showComment(comment) {
 // });
 }
 
+
+function addNewPost() {
+    console.log("add new post");
+    document.getElementById('posts').classList.add('hide-section');
+    document.getElementById('showPostAndComments').classList.add('hide-section');
+    document.getElementById('addPost').classList.remove('hide-section');
+  }
+
+const emojis = ["&#128514;", "&#128293;", "&#128078;"]; 
+
+
+function updateLikes(selectedPostID, emojiNumber) {
+    console.log(`".emoji${emojiNumber}"`);  
+    let emojiSet = document.querySelector(`p.emoji${emojiNumber}[data-id='${selectedPostID}']`);
+    console.log("set ", emojiSet);
+
+    var reactN = "";
+    for (let i = 0; i < emojiSet.childNodes.length; i++) {
+        let node = emojiSet.childNodes[i];
+        if (node.nodeType  === Node.TEXT_NODE) {
+            reactN += node.data;
+        }
+    }
+
+    console.log(reactN);
+    reactN.innerText == Number(reactN.innerText) + 1;
+    emojiSet.innerHTML = `<span class="emoji${emojiNumber}" data-id="${selectedPostID}">${emojis[emojiNumber-1]}</span>  ${Number(reactN)+1} `
+
+    //#TO DO call post function 
+
+  }

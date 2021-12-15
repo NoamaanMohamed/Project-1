@@ -13,11 +13,13 @@ router.post('/posts', (req,res) => {
     const newPost = Data.Post.create(post);
     res.send({message: `Post number ${newPost.id} request successfully`});
 });
+
 // show a particular post using its id @/post/idNumber
 router.get('/posts/:id', (req,res) => {
     try {
         const postID = parseInt(req.params.id);
         const selectedPost = Data.Post.findById(postID);
+
         res.send(selectedPost);
     } catch(err) {
         console.log(err);

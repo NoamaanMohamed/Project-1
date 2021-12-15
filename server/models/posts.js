@@ -67,16 +67,15 @@ class Post{
             return post;
         } catch (err) {
             throw new Error('This post does not exist.');
-        };
+        }
     };
     
     static create(post){
         const newPostId = Data.posts.length;
-        const newPost = new Post({id: newPostId, title: '', body:'', date: new Date().toUTCString(), likes1: 0, likes2: 0, likes3: 0, gif: "", ...post});
+        const newPost = new Post({id: newPostId, title: '', body:'', date: new Date().toUTCString(), likes1: "0", likes2: "0", likes3: "0", gif: "", ...post});
         Data.posts.push(newPost);
         return newPost;
     };
-
 };
 
-module.exports = {Post, Comment};
+module.exports = { Post, Comment };
