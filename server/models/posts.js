@@ -26,7 +26,7 @@ class Comment{
       
             const commentData = [];
             for(let i=0;i<Data.comments.length;i++){
-                if(Data.comments[i].postId === id){
+                if(Data.comments[i].postId == id){
                     commentData.push(Data.comments[i]);
                 }
             };
