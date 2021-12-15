@@ -7,7 +7,7 @@ router.get('/posts', (req,res) => {
     const allPosts = Data.Post.All;
     res.send(allPosts);
 });
-// post request
+// create a new post
 router.post('/posts', (req,res) => {
     const post = req.body;
     const newPost = Data.Post.create(post);
@@ -31,11 +31,26 @@ router.get('/comments', (req,res) =>{
     res.send(allComments);
 });
 
+// show a particular comment
+router.get('/comments/:id', (req,res) =>{
+    const commentID = parseInt(req.params.id);
+    const selectedComment = Data.Comment.findById(commentID);
+    res.send(selectedComment);
+});
+
+// show comments for a particular post
+router.get('/posts/:id/comments', (req,res) =>{
+    const postID = parseInt(req.params.id);
+    const commentList = Data.Comment.findByPostId(postID);
+    res.send(commentList);  
+});
+
 // create a new comment
 router.post('/comments', (req,res) => {
     const comment = req.body;
-    const newComment = Data.Comment.createCommentList(comment);
+    const newComment = Data.Comment.createComment(comment);
     res.send({message: `Comment list number ${newComment.id} created successfully`});
 });
+
 
 module.exports = router;
