@@ -68,6 +68,7 @@ function showSectionSelectedPost() {
   document.getElementById('posts').classList.add('hide-section');
   document.getElementById('showPostAndComments').classList.remove('hide-section');
   document.getElementById('addPost').classList.add('hide-section');
+  document.getElementById('submitComment').reset();
 }
 
 // function shows section 3 - newPost, and hides the other sections
@@ -169,21 +170,12 @@ function showPost(post) {
   newPostFooter.append(newComNumber);        
 };
 
-// function gets the post data from the server by its ID and calls function showSinglePost 
-// and then calls function get comments
-// function appendPostAndComs(postId) {
-//   urlIdPostEndpoint = `http://localhost:3000/posts/${postId}`;
-  // console.log(urlIdPostEndpoint);
-  // fetch(urlIdPostEndpoint)
-  //   .then(resp => resp.json())
-  //   .then(showSinglePost)
-  //   .catch(console.warn);
+// function gets the post data from the server by its ID and then 
+// calls function showSinglePost and function getComments
 async function appendPostAndComs(postId) {
   const response = await fetch(`http://localhost:3000/posts/${postId}`);
   const data = await response.json();
   showSinglePost(data);
-  console.log(data);
-
   getComments(postId);  
 };
 
@@ -256,7 +248,7 @@ function showComment(comment) {
   newComFrame.append(newComment);
 }
 
-// TODO function sends new comment to the server and refreshes section 
+// function sends new comment to the server and refreshes section 
 function addNewComment(e) {
   e.preventDefault();
 
@@ -288,8 +280,6 @@ function addNewComment(e) {
   window.location.reload();  
   appendPostAndComs(postId);
 };
-
-
 
 
 // function increases number of likes +1 after the click
@@ -338,17 +328,14 @@ function postPost(e){
   e.preventDefault();
   console.log(document.querySelector("#addPost #inputPostTitle"))
 
-  // #TODO does the gyphy empty?
-  // (document.querySelector(".giphyOut img").getAttribute("src")? null) 
+  // does the gyphy exist?
+  gif = (document.querySelector(".giphyOut img") === null)? "": document.querySelector(".giphyOut img").getAttribute("src");
 
   const postData = {
     title : document.querySelector("#addPost #inputPostTitle").value,
     body  : document.querySelector("#addPost #inputPostBody").value,
     date  : new Date().toJSON().slice(0, 10),
-    // likes1: "0"
-    // likes2: "0"
-    // likes3: "0"
-    gif   : document.querySelector(".giphyOut img").getAttribute("src")
+    gif   : gif
   };
   console.log(postData)
 
@@ -369,9 +356,8 @@ function postPost(e){
  
 };
 
-// function gets one random gif using API
+// function gets one random gif from giphy.com
 function getGiphy(e) {
-// const sendApiRequest = (e) => {
   console.log("gif")
     e.preventDefault();
     let userInput = document.getElementById("giphysearch").value;

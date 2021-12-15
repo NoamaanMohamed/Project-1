@@ -59,18 +59,23 @@
   <section id="showPostAndComments" class="hide-section">
 
     <div class="singlePost"></div>
+
         <!-- dinamically -->
+    
     </div>   
 
     
     <h3 class="comLabel">Comments:</h3>
-    <div class="input-group">
-        <textarea class="form-control newComment" required aria-label="With textarea"></textarea>
-    </div>
-    <div>
-        <button id="sendComment" maxlength="100" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
-    </div>
 
+    <form id="submitComment">
+        <div class="input-group">
+          <textarea required  rows="3" maxlength="130" class="form-control newComment" aria-label="With textarea"></textarea>
+        </div>
+        <div>
+          <button id="sendComment" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
+        </div>
+    </form>
+    
     <div class="comList">
         <!-- dinamically -->
     </div>
