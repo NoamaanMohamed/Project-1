@@ -12,7 +12,8 @@ showAll();
 document.querySelector("#refNewPost").addEventListener("click", addNewPost);
 document.querySelector("#refAllPosts").addEventListener("click", showAllPosts);
 
-// section allPosts listeners
+// SECTION 1-  allPosts listeners
+// click the post
 document.addEventListener("click", function(e) {
   console.log(e.target);
   console.log(e.target.className);
@@ -32,11 +33,24 @@ document.addEventListener("click", function(e) {
       appendPostAndComs(selectedPostID );
   }
 });
+// click emoji
+document.addEventListener("click", function(e) {
+  console.log(e.target.className)
+  if ((e.target && e.target.className == "emoji1") ||
+      (e.target && e.target.className == "emoji2") ||
+      (e.target && e.target.className == "emoji3")) {
 
-// section singlePost&Comments listeners
+      let selectedPostID = e.target.getAttribute('data-id');
+      console.log(selectedPostID);
+      console.log(e.target.className[5]);
+      updateLikes(selectedPostID, e.target.className[5]);
+  }
+});
+
+// SECTION 2 - singlePost&Comments listeners
 
 
-// section newPost listeners
+// SECTION 3 - newPost listeners
 document.querySelector('#btnGiphySearch').addEventListener("click", sendApiRequest);
 
 
@@ -110,41 +124,34 @@ function showPost(post) {
   newPostFrame.append(newPostFooter);
 
   const newEmoji1 = document.createElement('p');
-  // open with comments
-  // newComNumber.innerHTML = `<span>&#128517;</span> ${post.likes1} `
-  newEmoji1.innerHTML = `<span>&#128514;</span>  `
-  newEmoji1.classList.add('emoji');
+  newEmoji1.innerHTML = `<span class="emoji1" data-id="${post.id}">&#128514;</span> ${post.likes1} `
+  // newEmoji1.innerHTML = `<span>&#128514;</span>  `
+  newEmoji1.classList.add('emoji1');
   newEmoji1.setAttribute('data-id', post.id);
+  console.log(newEmoji1.getAttribute("data-id"),"dataid");
   newPostFooter.append(newEmoji1);
 
   const newEmoji2 = document.createElement('p');
-  // open with comments
-  // newComNumber.innerHTML = `<span>&#128517;</span> ${post.likes2} `
-  newEmoji2.innerHTML = `<span>&#128293;</span>  `
-  newEmoji2.classList.add('emoji');
+  newEmoji2.innerHTML = `<span class="emoji2" data-id="${post.id}">&#128293;</span> ${post.likes2} `
+  // newEmoji2.innerHTML = `<span>&#128293;</span>  `
+  newEmoji2.classList.add('emoji2');
   newEmoji2.setAttribute('data-id', post.id);
   newPostFooter.append(newEmoji2);
 
   const newEmoji3 = document.createElement('p');
-  // open with comments
-  // newComNumber.innerHTML = `<span>&#128517;</span> ${post.likes3} `
-  newEmoji3.innerHTML = `<span>&#128078;</span>  `
-  newEmoji3.classList.add('emoji');
+  newEmoji3.innerHTML = `<span class="emoji3" data-id="${post.id}">&#128078;</span> ${post.likes3} `
+  // newEmoji3.innerHTML = `<span>&#128078;</span>  `
+  newEmoji3.classList.add('emoji3');
   newEmoji3.setAttribute('data-id', post.id);
   newPostFooter.append(newEmoji3);
   
   const newComNumber = document.createElement('p');
-  // open with comments
+  // open with fetch comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
   newComNumber.innerHTML = `<i class="fas fa-comment"></i> `
   newComNumber.classList.add('card-text');
   newComNumber.setAttribute('data-id', post.id);
-  newPostFooter.append(newComNumber);
-
-  // const newCommentSign = document.createElement('i');
-  // newCommentSign.classList.add('fas');
-  // newCommentSign.classList.add('fa-comment');
-  // newComNumber.append(newCommentSign);         
+  newPostFooter.append(newComNumber);        
 };
 
 // added by ginger
@@ -167,8 +174,7 @@ function showPostAndComs(post) {
   const singlePost = document.querySelector('.singlePost')
 
   const newPostTitle = document.createElement('h3');
-  // open after title
-  // newPostTitle.innerText = post.title;
+  newPostTitle.innerText = post.title;
   newPostTitle.classList.add('postTitle');
   singlePost.append(newPostTitle);
 
@@ -178,24 +184,23 @@ function showPostAndComs(post) {
   singlePost.append(newPostBody);
 
   const newPostFooter = document.createElement('div');
-  // open after API by ID
   newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.classList.add('postFooter');
   singlePost.append(newPostFooter);
 
   const newComNumber = document.createElement('p');
+  // open with fetch comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
   newComNumber.innerHTML = `<i class="fas fa-comment"></i>  `
   newComNumber.classList.add('card-text');
   // open after API by ID
-  // newPostFooter.setAttribute('data-id', post.id);
+  newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.append(newComNumber);
-  // open after API by ID
+  // // open with fetch comments
   // console.log(post.comments);
-
   // post.comments.forEach(comment => showComment(comment));
 }
-// open after API by ID
+// // open with fetch comments
 // function showComment(comment) {
 //   const newComFrame = document.createElement('div');
 //   newComFrame.classList.add('comFrame');
@@ -223,6 +228,7 @@ function addNewPost() {
 // function increases number of likes +1 after click
 function updateLikes(selectedPostID, emojiNumber) {
   console.log(`".emoji${emojiNumber}"`);  
+  console.log(selectedPostID, "selected post id")
   let emojiSet = document.querySelector(`p.emoji${emojiNumber}[data-id='${selectedPostID}']`);
   console.log("set ", emojiSet);
   var reactN = "";
@@ -239,7 +245,6 @@ function updateLikes(selectedPostID, emojiNumber) {
   //#TO DO call post function 
 
 }
-
 
 
 function sendPost(e){
