@@ -41,7 +41,11 @@ class Post{
         this.likes2 = data.likes2;
         this.likes3 = data.likes3;
         this.gif = data.gif;
+<<<<<<< HEAD
     };
+=======
+    }
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 
     static get All(){
         const posts = postsData.posts.map((post) => new Post(post));
@@ -59,9 +63,15 @@ class Post{
     };
     
     static create(post){
+<<<<<<< HEAD
         const newPostId = postsData.posts.length;
         const newPost = new Post({id: newPostId, ...post});
         postsData.posts.push(newPost);
+=======
+        const newPostId = postsData.length;
+        const newPost = new Post({id: newPostId, date: new Date().toJSON().slice(0, 10),comments:[], likes1:"0", likes2: "0", likes3: "0", gif:"",...post});
+        postsData.push(newPost);
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
         return newPost;
     };
 };

@@ -1,25 +1,47 @@
 
+<<<<<<< HEAD
 // const showBtn = document.querySelector("#showAll");
 const postBtn = document.querySelector("#postBtn");
 // showBtn.addEventListener('click', showAll);
 // postBtn.addEventListener('click', sendPost);
+=======
+// -----------CONSTANTS---------------------------
+const ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
+const emojis = ["&#128514;", "&#128293;", "&#128078;"]; 
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 
+
+// -----------START------------------------------
+// start - section allPosts, fetch the data and show it
 showAll();
 
+<<<<<<< HEAD
 
+=======
+// navBar listeners
+document.querySelector("#refNewPost").addEventListener("click", addNewPost);
+document.querySelector("#refAllPosts").addEventListener("click", showAllPosts);
+
+// SECTION 1-  allPosts listeners
+// click the post
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 document.addEventListener("click", function(e) {
-  // console.log(e.target);
-  // console.log(e.target.className);
+  console.log(e.target);
+  console.log(e.target.className);
   if((e.target && e.target.className == "postFrame")   || 
       (e.target && e.target.className == "post")       ||
       (e.target && e.target.className == "postFooter") ||
       (e.target && e.target.className == "postTitle")  || 
+      (e.target && e.target.className == "postGif")    || 
+      (e.target && e.target.className == "gifFrame")   || 
+      (e.target && e.target.className == "emoji")      || 
       (e.target && e.target.className == "postBody")) {
       console.log(e.target.className);
       console.log(e.target);
 
       let selectedPostID = e.target.getAttribute('data-id');
       console.log(selectedPostID);
+<<<<<<< HEAD
       showPostAndComments(selectedPostID);
   }
 });
@@ -28,6 +50,30 @@ document.addEventListener("click", function(e) {
 
 
 
+=======
+      appendPostAndComs(selectedPostID );
+  }
+});
+// click emoji
+document.addEventListener("click", function(e) {
+  console.log(e.target.className)
+  if ((e.target && e.target.className == "emoji1") ||
+      (e.target && e.target.className == "emoji2") ||
+      (e.target && e.target.className == "emoji3")) {
+
+      let selectedPostID = e.target.getAttribute('data-id');
+      console.log(selectedPostID);
+      console.log(e.target.className[5]);
+      updateLikes(selectedPostID, e.target.className[5]);
+  }
+});
+
+// SECTION 2 - singlePost&Comments listeners
+
+
+// SECTION 3 - newPost listeners
+document.querySelector('#btnGiphySearch').addEventListener("click", sendApiRequest);
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 
 
 // -----------------FUNCTIONS----------------------
@@ -95,66 +141,105 @@ function showPost(post) {
   newPostBody.classList.add('postBody');
   newPostFrame.append(newPostBody);
 
+  const newGifFrame = document.createElement('div');
+  newGifFrame.classList.add("gifFrame");
+  newPostFrame.append(newGifFrame);
+
+  const newPostGif = document.createElement('img');
+  newPostGif.setAttribute("src", post.gif);
+  newPostGif.classList.add('postGif');
+  newGifFrame.append(newPostGif);
+
   const newPostFooter = document.createElement('div');
   newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.classList.add('postFooter');
   newPostFrame.append(newPostFooter);
 
+  const newEmoji1 = document.createElement('p');
+  newEmoji1.innerHTML = `<span class="emoji1" data-id="${post.id}">&#128514;</span> ${post.likes1} `
+  // newEmoji1.innerHTML = `<span>&#128514;</span>  `
+  newEmoji1.classList.add('emoji1');
+  newEmoji1.setAttribute('data-id', post.id);
+  console.log(newEmoji1.getAttribute("data-id"),"dataid");
+  newPostFooter.append(newEmoji1);
+
+  const newEmoji2 = document.createElement('p');
+  newEmoji2.innerHTML = `<span class="emoji2" data-id="${post.id}">&#128293;</span> ${post.likes2} `
+  // newEmoji2.innerHTML = `<span>&#128293;</span>  `
+  newEmoji2.classList.add('emoji2');
+  newEmoji2.setAttribute('data-id', post.id);
+  newPostFooter.append(newEmoji2);
+
+  const newEmoji3 = document.createElement('p');
+  newEmoji3.innerHTML = `<span class="emoji3" data-id="${post.id}">&#128078;</span> ${post.likes3} `
+  // newEmoji3.innerHTML = `<span>&#128078;</span>  `
+  newEmoji3.classList.add('emoji3');
+  newEmoji3.setAttribute('data-id', post.id);
+  newPostFooter.append(newEmoji3);
+  
   const newComNumber = document.createElement('p');
-  // open with comments
+  // open with fetch comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
   newComNumber.innerHTML = `<i class="fas fa-comment"></i> `
   newComNumber.classList.add('card-text');
   newComNumber.setAttribute('data-id', post.id);
-  // newComNumber.innerHTML = post.comments.length;
-  newPostFooter.append(newComNumber);
-
-  // const newCommentSign = document.createElement('i');
-  // newCommentSign.classList.add('fas');
-  // newCommentSign.classList.add('fa-comment');
-  // newComNumber.append(newCommentSign);         
+  newPostFooter.append(newComNumber);        
 };
 
 // added by ginger
-function showPostAndComments(postId) {
+function appendPostAndComs(postId) {
+  urlIdPostEndpoint = `http://localhost:3000/posts/${postId}`;
+  console.log(urlIdPostEndpoint);
+  fetch(urlIdPostEndpoint)
+    .then(resp => resp.json())
+    // .then(resp => console.log(resp, "fetch id"))
+    .then(showPostAndComs).catch(console.warn);
+};
+
+function showPostAndComs(post) {
   document.getElementById('posts').classList.add('hide-section');
   document.getElementById('showPostAndComments').classList.remove('hide-section');
+  document.getElementById('addPost').classList.add('hide-section');
 
-  const post = posts[postId];
   console.log(post);
 
+<<<<<<< HEAD
   const singlePost = document.querySelector('.singlePost');
+=======
+  document.querySelector('.singlePost').innerHTML = '';
+  document.querySelector('.comList').innerHTML = '';
+
+  const singlePost = document.querySelector('.singlePost')
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 
   const newPostTitle = document.createElement('h3');
-  // open after title
-  // newPostTitle.innerText = post.title;
+  newPostTitle.innerText = post.title;
   newPostTitle.classList.add('postTitle');
   singlePost.append(newPostTitle);
 
   const newPostBody = document.createElement('p');
-  // open after API by ID
-  // newPostBody.innerText = post.body;
+  newPostBody.innerText = post.body;
   newPostBody.classList.add('postBody');
   singlePost.append(newPostBody);
 
   const newPostFooter = document.createElement('div');
-  // open after API by ID
-  // newPostFooter.setAttribute('data-id', post.id);
+  newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.classList.add('postFooter');
   singlePost.append(newPostFooter);
 
   const newComNumber = document.createElement('p');
+  // open with fetch comments
   // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
   newComNumber.innerHTML = `<i class="fas fa-comment"></i>  `
   newComNumber.classList.add('card-text');
   // open after API by ID
-  // newPostFooter.setAttribute('data-id', post.id);
+  newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.append(newComNumber);
-  // open after API by ID
+  // // open with fetch comments
   // console.log(post.comments);
-
   // post.comments.forEach(comment => showComment(comment));
 }
+<<<<<<< HEAD
 
 
 function showPostAndComments2(post) {
@@ -197,6 +282,9 @@ function showPostAndComments2(post) {
 }
 
 // open after API by ID
+=======
+// // open with fetch comments
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 // function showComment(comment) {
 //   const newComFrame = document.createElement('div');
 //   newComFrame.classList.add('comFrame');
@@ -208,21 +296,39 @@ function showPostAndComments2(post) {
 //   newComFrame.append(newComment);
 // }
 
-const allPosts = document.querySelector('#refAllPosts');
-const newPost = document.querySelector('#refNewPost');
-const getAllPosts = () => {
+function showAllPosts() {
   document.getElementById('posts').classList.remove('hide-section');
   document.getElementById('showPostAndComments').classList.add('hide-section');
   document.getElementById('addPost').classList.add('hide-section');
-};
-const writeNewPost = () => {
+}
+
+function addNewPost() {
   document.getElementById('posts').classList.add('hide-section');
   document.getElementById('showPostAndComments').classList.add('hide-section');
   document.getElementById('addPost').classList.remove('hide-section');
-}
-allPosts.addEventListener('click', getAllPosts);
-newPost.addEventListener('click', writeNewPost);
 
+  document.getElementById('submitNewPost').reset();
+}
+// function increases number of likes +1 after click
+function updateLikes(selectedPostID, emojiNumber) {
+  console.log(`".emoji${emojiNumber}"`);  
+  console.log(selectedPostID, "selected post id")
+  let emojiSet = document.querySelector(`p.emoji${emojiNumber}[data-id='${selectedPostID}']`);
+  console.log("set ", emojiSet);
+  var reactN = "";
+  for (let i = 0; i < emojiSet.childNodes.length; i++) {
+      let node = emojiSet.childNodes[i];
+      if (node.nodeType  === Node.TEXT_NODE) {
+          reactN += node.data;
+      }
+  }
+  console.log(reactN);
+  reactN.innerText == Number(reactN.innerText) + 1;
+  emojiSet.innerHTML = `<span class="emoji${emojiNumber}" data-id="${selectedPostID}">${emojis[emojiNumber-1]}</span>  ${Number(reactN)+1} `
+
+  //#TO DO call post function 
+
+}
 
 
 function sendPost(e){
@@ -247,6 +353,7 @@ function sendPost(e){
 };
 
 
+<<<<<<< HEAD
 
 const giphyForm = document.querySelector('#giphy-form');
             let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
@@ -275,6 +382,39 @@ const giphyForm = document.querySelector('#giphy-form');
             }
             giphyForm.addEventListener("submit", sendApiRequest);
 
+=======
+// function sendApiRequest() { 
+// const giphyForm = document.querySelector('#giphy-form');
+
+function sendApiRequest(e) {
+// const sendApiRequest = (e) => {
+  console.log("gif")
+    e.preventDefault();
+    let userInput = document.getElementById("giphysearch").value;
+    console.log(userInput);
+
+    let giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${ApiKey}`;
+    
+    fetch(giphyApiUrl)
+    .then( data => {
+      return data.json();
+    } )
+    .then( json => {
+      console.log(json.data);
+      // console.log("META", json.meta);
+      // console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
+      let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
+      console.log(imgPath)
+      let img = document.createElement("img");
+      img.setAttribute("src", imgPath);
+      let out = document.querySelector(".giphyOut");
+      // remove previous giphy before putting new one 
+      out.innerHTML = '';
+      out.insertAdjacentElement("afterbegin", img);
+    }
+)};
+            
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
 
 
 

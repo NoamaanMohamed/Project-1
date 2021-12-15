@@ -5,6 +5,7 @@ const post = data.Post;
 const comment = data.Comment;
 
 
+<<<<<<< HEAD
 // display all posts in the main endpoint
 router.get('/posts', (req,res) => {
     const allPosts = post.All;
@@ -14,10 +15,26 @@ router.get('/posts', (req,res) => {
 router.post('/posts', (req,res) => {
     const postx = req.body;
     const newPost = post.create(postx);
+=======
+// get all posts to show in the main endpoint
+router.get('/', (req,res) => {
+    const allPosts = Post.All;
+    res.send(allPosts);
+});
+// post request
+router.post('/', (req,res) => {
+    const post = req.body;
+    const newPost = Post.create(post);
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
     res.send({message: `Post number ${newPost.id} request successfully`});
+
 });
 
+<<<<<<< HEAD
 router.get('/posts/:id', (req,res) => {
+=======
+router.get('/:id', (req,res) => {
+>>>>>>> 10c7a6c67e8271e8b8e2f69148495e3270567ae6
     try {
         const postID = parseInt(req.params.id);
         const selectedPost = post.findById(postID);
