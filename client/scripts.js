@@ -81,12 +81,12 @@ function addNewPost() {
 
 // function gets all posts data from server and calls function appendPost to show them 
 // function showAll() {
-//   fetch('http://localhost:3000/posts')
+//   fetch('https://java-spread.herokuapp.com/posts')
 //     .then(resp => resp.json())
 //     .then(appendPosts)
 //     .catch(console.warn);
 async function showAll() {
-  const response = await fetch('http://localhost:3000/posts');  
+  const response = await fetch('https://java-spread.herokuapp.com/posts');  
   const posts  = await response.json();
   console.log(posts)
   appendPosts(posts);
@@ -171,7 +171,7 @@ function showPost(post) {
 // function gets the post data from the server by its ID and then 
 // calls function showSinglePost and function getComments
 async function appendPostAndComs(postId) {
-  const response = await fetch(`http://localhost:3000/posts/${postId}`);
+  const response = await fetch(`https://java-spread.herokuapp.com/posts/${postId}`);
   const data = await response.json();
   showSinglePost(data);
   getComments(postId);  
@@ -216,14 +216,14 @@ function showSinglePost(post) {
 
 // functiont gets all comments from the server
 function getComments(postId) {
-   console.log(`http://localhost:3000/posts/${postId}/comments`);
-    fetch(`http://localhost:3000/posts/${postId}/comments`)
+   console.log(`https://java-spread.herokuapp.com/posts/${postId}/comments`);
+    fetch(`https://java-spread.herokuapp.com/posts/${postId}/comments`)
     .then(r => r.json())
     .then(appendComments)
     .catch(console.warn)
   };
 // async function getComments(postId) {
-//   const response = await fetch(`http://localhost:3000/posts/${postId}/comments`);
+//   const response = await fetch(`https://java-spread.herokuapp.com/posts/${postId}/comments`);
 //   const data = await response.json();
 //   console.log("data", data)
 //   appendComments(data,postId);
@@ -290,7 +290,7 @@ function addNewComment(e) {
     }
   };
 
-  fetch('http://localhost:3000/comments', options)
+  fetch('https://java-spread.herokuapp.com/comments', options)
     .then(r => r.json())
     // .then(appendComments)
     .catch(console.warn);
@@ -331,7 +331,7 @@ function updateLikes(selectedPostID, emojiNumber) {
   //   }
   // };  
 
-  // urlIdPostEndpoint = `http://localhost:3000/posts/${selectedPostID}`;
+  // urlIdPostEndpoint = `https://java-spread.herokuapp.com/posts/${selectedPostID}`;
   // console.log(urlIdPostEndpoint);
   // fetch(urlIdPostEndpoint, options)
   //     .then(resp => resp.json())
@@ -364,7 +364,7 @@ function postPost(e){
     }
   };
 
-  fetch('http://localhost:3000/posts', options)
+  fetch('https://java-spread.herokuapp.com/posts', options)
   // .then(r => r.json())
   // .then(appendPosts)
   .catch(console.warn);
@@ -423,7 +423,7 @@ function getGiphy(e) {
 //   };
 //   console.log(e.target.body.value);
 
-//   fetch('http://localhost:3000/posts', options)
+//   fetch('https://java-spread.herokuapp.com/posts', options)
 //     .then(r => r.json())
 //     .then(addAllComments)
 //     .catch(console.warn);
