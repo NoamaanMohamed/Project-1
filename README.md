@@ -14,13 +14,18 @@ We have also added the functionality of choosing a random gif related to your gi
 - [x] jest & supertest - Were used for testing front- and backend.
 
 # Challenges
-### Website styling:
+### Website styling
 - On eof the issues face was ayayayay
-- Routing of posts and their content:
-- Comment storage:
-- Displaying of emojis and their count on client: 
-- Sending the count of emojis back to the server:
-- Browser compatibility: 
+### Routing of posts and their content
+
+### Comment storage
+
+### Displaying of emojis and their count on client
+
+### Sending the count of emojis back to the server
+
+### Browser compatibility
+
 
 # Credits: Team JavaSpread
 - [x] Tatiana Lezhneva  @Ginger9307
