@@ -51,16 +51,8 @@ document.addEventListener("click", function(e) {
       showPostAndComments(selectedPostID);
   }
 });
-
-
-
-
-
-
-
       appendPostAndComs(selectedPostID );
-  }
-});
+
 // click emoji
 document.addEventListener("click", function(e) {
   // console.log(e.target.className)
@@ -95,8 +87,8 @@ function showAll() {
     .catch(console.warn);
 }
 
-    .then(appendPosts).catch(console.warn);
-};
+//     .then(appendPosts).catch(console.warn);
+// };
 
 // function showPostWithPostId() {
 //   const post;
