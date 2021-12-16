@@ -80,19 +80,26 @@ function addNewPost() {
 }
 
 // function gets all posts data from server and calls function appendPost to show them 
-function showAll() {
-  fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
-    .then(appendPosts)
-    .catch(console.warn);
+// function showAll() {
+//   fetch('http://localhost:3000/posts')
+//     .then(resp => resp.json())
+//     .then(appendPosts)
+//     .catch(console.warn);
+async function showAll() {
+  const response = await fetch('http://localhost:3000/posts');  
+  const posts  = await response.json();
+  console.log(posts)
+  appendPosts(posts);
+  posts.forEach(post => getComments(post.id))
 }
+
 // helping function for showAll
 // calls function showPost for every post
 function appendPosts(posts) {
   showSectionAllPosts();
   // clean the section 1 before loading new post data
   document.querySelector(".allPosts").innerHTML = "";
-  posts.forEach(showPost);
+  posts.forEach(post => showPost(post));
 };
 
 // helping function for showPost
@@ -143,31 +150,22 @@ function showPost(post) {
   newPostFrame.append(newPostFooter);
 
   const newEmoji1 = document.createElement('p');
-  newEmoji1.innerHTML = `<span class="emoji1" data-id="${post.id}">&#128514;</span> ${post.likes1} `
+  newEmoji1.innerHTML = `<span class="emoji1" data-id="${post.id}">&#128514;</span> ${post.likes1}`
   newEmoji1.classList.add('emoji1p');
   newEmoji1.setAttribute('data-id', post.id);
-  // console.log(newEmoji1.getAttribute("data-id"),"dataid");
   newPostFooter.append(newEmoji1);
 
   const newEmoji2 = document.createElement('p');
-  newEmoji2.innerHTML = `<span class="emoji2" data-id="${post.id}">&#128293;</span> ${post.likes2} `
+  newEmoji2.innerHTML = `<span class="emoji2" data-id="${post.id}">&#128293;</span> ${post.likes2}`
   newEmoji2.classList.add('emoji2p');
   newEmoji2.setAttribute('data-id', post.id);
   newPostFooter.append(newEmoji2);
 
   const newEmoji3 = document.createElement('p');
-  newEmoji3.innerHTML = `<span class="emoji3" data-id="${post.id}">&#128078;</span> ${post.likes3} `
+  newEmoji3.innerHTML = `<span class="emoji3" data-id="${post.id}">&#128078;</span> ${post.likes3}`
   newEmoji3.classList.add('emoji3p');
   newEmoji3.setAttribute('data-id', post.id);
-  newPostFooter.append(newEmoji3);
-  
-  const newComNumber = document.createElement('p');
-  // open with fetch comments
-  // newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length} `
-  newComNumber.innerHTML = `<i class="fas fa-comment"></i> `
-  newComNumber.classList.add('card-text');
-  newComNumber.setAttribute('data-id', post.id);
-  newPostFooter.append(newComNumber);        
+  newPostFooter.append(newEmoji3);      
 };
 
 // function gets the post data from the server by its ID and then 
@@ -211,7 +209,7 @@ function showSinglePost(post) {
   newGifFrame.append(newPostGif);
 
   const newPostFooter = document.createElement('div');
-  // newPostFooter.setAttribute('data-id', post.id);
+  newPostFooter.setAttribute('data-id', post.id);
   newPostFooter.classList.add('postFooter');
   singlePost.append(newPostFooter);
 }
@@ -224,16 +222,36 @@ function getComments(postId) {
     .then(appendComments)
     .catch(console.warn)
   };
+// async function getComments(postId) {
+//   const response = await fetch(`http://localhost:3000/posts/${postId}/comments`);
+//   const data = await response.json();
+//   console.log("data", data)
+//   appendComments(data,postId);
+// };
 
 // function creates elements for number of comments and calls the showComment for every comment
 function appendComments(comments) {
+
   const newComNumber = document.createElement('p');
   newComNumber.innerHTML = `<i class="fas fa-comment"></i> ${comments.length} `
   newComNumber.classList.add('card-text');
-  document.querySelector(".singlePost .postFooter").append(newComNumber);
+  newComNumber.setAttribute('data-id', comments);
 
-  comments.forEach(comment => showComment(comment));
-}
+  postId = (comments[0] == null)? "" : comments[0].postId;
+  console.log(postId)
+  
+  const sectionSinglePosts = document.querySelector('#posts').classList.contains('hide-section')
+  console.log("section", sectionSinglePosts, comments);
+  if (sectionSinglePosts) {
+      document.querySelector(".singlePost .postFooter").append(newComNumber);
+      comments.forEach(comment => showComment(comment));
+  } else {
+    // if (postId != '') {
+      console.log(document.querySelector(`.postFooter[data-id='${postId}']`))
+      document.querySelector(`.postFooter[data-id='${postId}']`).append(newComNumber);
+    // };
+  };
+}                        
 
 // helping function for appendComment
 // function creates elements for the comment
@@ -280,7 +298,6 @@ function addNewComment(e) {
   window.location.reload();  
   appendPostAndComs(postId);
 };
-
 
 // function increases number of likes +1 after the click
 function updateLikes(selectedPostID, emojiNumber) {
@@ -382,7 +399,6 @@ function getGiphy(e) {
     }
 )};
             
-
 // const commentBtn = document.querySelector('#sendComment');
 
 // function addAllComments(commentData) {

@@ -100,6 +100,7 @@ li a, .navbar .navbar-brand {
 
 .emoji1p, .emoji2p, .emoji3p {
     cursor: pointer;
+    padding-right: 5px;
 }
 
 /* section 2 Post and its comments */
