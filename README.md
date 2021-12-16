@@ -12,6 +12,12 @@ We have also added the functionality of choosing a random gif related to your gi
 - [x] heroku - Was used to upload our server for free so that data won't get lost over time.
 - [x] netlify - Was used to deploy our client.
 - [x] jest & supertest - Were used for testing front- and backend.
+# Successes
+### Beautiful and clean interface
+### Submission of new posts
+### Submission of comments
+### Add a gif reactions with each new post
+### React to posts using emojis
 
 # Challenges
 ### Website styling
