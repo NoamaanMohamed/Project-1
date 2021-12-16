@@ -15,15 +15,13 @@ We have also added the functionality of choosing a random gif related to your gi
 
 # Challenges
 ### Website styling
-- On eof the issues face was ayayayay
-### Routing of posts and their content
-
+- One of the major challenges we face at the beginning of this project was the styling of the blog website. Initially we used a framework to get the website look nice and tidy, but then we learned that we were not allowed to use any major framework. As a result, all the styling and accessibility functions of the website were done from scratch to resemble the framework styling initially used.
+### Retrieval of posts and their content
+- Another issue we faced was the retrieval of posts and their content onto the client’s website.  Although the routing was done and worked fine server-side-wise, we couldn’t display new posts that we made.  Later on, we found out the error and we resolved this issue.
 ### Comment storage
-
-### Displaying of emojis and their count on client
-
+- The next major issue we encountered was the storage of comments made to existing posts. Initially we wanted to have the comments be stored in an array that would be a key to a post object. While we could retrieve the comments themselves for a specific post, we could not create and add a new comment entry and then append it to the comment array. Therefore, to overcome this, we created a separate array containing comment objects in our data file. That way we could create a new comment object and push it to the new comment array, which then would be retrieved. Then, to associate each comment to a particular post, we added a new key to each comment object called “postId”. And then created a new route to fetch all the comments belonging to a particular post.
 ### Sending the count of emojis back to the server
-
+- 
 ### Browser compatibility
 
 
