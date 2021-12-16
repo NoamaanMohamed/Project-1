@@ -14,7 +14,7 @@ We have also added the functionality of choosing a random gif related to your gi
 - [x] jest & supertest - Were used for testing front- and backend.
 
 # Challenges
-## Website styling:
+### Website styling:
 - On eof the issues face was ayayayay
 - Routing of posts and their content:
 - Comment storage:
