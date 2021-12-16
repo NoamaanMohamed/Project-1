@@ -27,16 +27,16 @@
                 javaSpreadBlog
             </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
+              </button> 
 
             <div class="collapse navbar-collapse just" id="collapsibleNavbar">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
                     <a id="refAllPosts" class="nav-link">allPosts</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ms auto">
                     <a id="refNewPost" class="nav-link">newPost</a>
                   </li>
                 </ul>
@@ -59,18 +59,23 @@
   <section id="showPostAndComments" class="hide-section">
 
     <div class="singlePost"></div>
+
         <!-- dinamically -->
+    
     </div>   
 
     
     <h3 class="comLabel">Comments:</h3>
-    <div class="input-group">
-        <textarea class="form-control newComment" aria-label="With textarea"></textarea>
-    </div>
-    <div>
-        <button id="sendComment" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
-    </div>
 
+    <form id="submitComment">
+        <div class="input-group">
+          <textarea required  rows="3" maxlength="130" class="form-control newComment" aria-label="With textarea"></textarea>
+        </div>
+        <div>
+          <button id="sendComment" class="btn btn-dark btnAddCom" type="submit">Add comment</button>
+        </div>
+    </form>
+    
     <div class="comList">
         <!-- dinamically -->
     </div>
@@ -90,12 +95,8 @@
           <textarea class="form-control" maxlength="300" id="inputPostBody" rows="5" required></textarea>
         </div>
         <div>
-        <!-- <form id="giphy-form"> -->
-                <!-- <label for="giphysearch">Giphy Search</label> -->
           <input id="giphysearch" type="text" name="giphysearch" placeholder="search giphy by term" />
-                <!-- <button id="btnGiphySearch" type="submit">Get gifs!!!</button> -->
           <button id="btnGiphySearch" class="btn btn-dark" type="button">getGiphy!</button>
-        <!-- </form> -->
         </div>
 
         <div class="giphyOut"></div>

@@ -36,7 +36,8 @@ class Comment{
 
     static createComment(comment){
         const listId = Data.comments.length;
-        const newList = new Comment({id: listId, comment: "", postId: 0, ...comment});
+        const newList = new Comment({id: listId, comment: '', postId: '', ...comment});
+        console.log(newList);
         Data.comments.push(newList);
         return newList;
     };
