@@ -46,7 +46,7 @@ li a, .navbar .navbar-brand {
     display: block;
 }
 
-.postGif {
+.allPosts .postGif {
     width: 250px;
     height: auto;
     display: block;
@@ -55,7 +55,7 @@ li a, .navbar .navbar-brand {
 }
 
 @media screen and (max-width: 1140px){
-    .postGif {
+    .allPosts .postGif {
         width: 150px;
     }
 }
@@ -100,11 +100,31 @@ li a, .navbar .navbar-brand {
 
 .emoji1p, .emoji2p, .emoji3p {
     cursor: pointer;
+    padding-right: 5px;
 }
 
 /* section 2 Post and its comments */
 #showPostAndComments {
     margin: 110px 30% 0 30% ;
+}
+
+.singlePost .postGif {
+    width: 450px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 1140px){
+    .singlePost .postGif {
+        width: 350px;
+    }
+}   
+@media screen and (max-width: 800px){
+    .singlePost .postGif {
+        width: 200px;
+   }
 }
 
 .comLabel {
