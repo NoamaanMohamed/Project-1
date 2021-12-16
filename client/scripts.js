@@ -39,7 +39,7 @@ document.addEventListener("click", function(e) {
       // console.log(e.target.className)
       // console.log(e.target);
 
-      let selectedPostID = e.target.getAttribute('data-id');
+      // let selectedPostID = e.target.getAttribute('data-id');
       // console.log(selectedPostID);
 
       console.log(e.target.className);
@@ -58,9 +58,9 @@ document.addEventListener("click", function(e) {
 
 
 
-      appendPostAndComs(selectedPostID );
-  }
-});
+      
+  
+
 // click emoji
 document.addEventListener("click", function(e) {
   // console.log(e.target.className)
@@ -95,8 +95,7 @@ function showAll() {
     .catch(console.warn);
 }
 
-    .then(appendPosts).catch(console.warn);
-};
+    
 
 // function showPostWithPostId() {
 //   const post;
@@ -337,32 +336,32 @@ function postPost(e){
 
 
 
-const giphyForm = document.querySelector('#giphy-form');
-            let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
+// const giphyForm = document.querySelector('#giphy-form');
+//             let ApiKey = "XVDNoMMkh34V76bFFB0HhvT9SJiQJim8";
 
-            const sendApiRequest = (e) => {
-                e.preventDefault();
-                let userInput = document.getElementById("giphysearch").value;
-                console.log(userInput);
+//             const sendApiRequest = (e) => {
+//                 e.preventDefault();
+//                 let userInput = document.getElementById("giphysearch").value;
+//                 console.log(userInput);
 
-                let giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${ApiKey}`;
-                fetch(giphyApiUrl)
-                    .then( data => {
-                        return data.json();
-                    } )
-                    .then( json => {
-                        console.log(json.data);
-                        console.log("META", json.meta);
-                        console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
-                        let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
-                        let img = document.createElement("img");
-                        img.setAttribute("src", imgPath);
-                        let out = document.querySelector(".giphyOut");
-                        out.insertAdjacentElement("afterbegin", img);
-                        }
-                    )
-            }
-            giphyForm.addEventListener("submit", sendApiRequest);
+//                 let giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${ApiKey}`;
+//                 fetch(giphyApiUrl)
+//                     .then( data => {
+//                         return data.json();
+//                     } )
+//                     .then( json => {
+//                         console.log(json.data);
+//                         console.log("META", json.meta);
+//                         console.log(json.data[Math.floor(Math.random()*50)].images.fixed_height.url);
+//                         let imgPath = json.data[Math.floor(Math.random()*50)].images.fixed_height.url;
+//                         let img = document.createElement("img");
+//                         img.setAttribute("src", imgPath);
+//                         let out = document.querySelector(".giphyOut");
+//                         out.insertAdjacentElement("afterbegin", img);
+//                         }
+//                     )
+//             }
+//             giphyForm.addEventListener("submit", sendApiRequest);
 
 
 // function sendApiRequest() { 
