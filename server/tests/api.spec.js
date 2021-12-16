@@ -16,6 +16,12 @@ describe('API server', () => {
       gif: ""
     }
 
+    let comment = {
+        id: 5,
+        comment: "meesageasjdaksdk",
+        postId: 0
+    }
+
 
 
     beforeAll(() => {
@@ -29,6 +35,9 @@ describe('API server', () => {
         console.log('Gracefully stopping test server');
         api.close(done);
     });
+
+
+    //posts test
 
     it('responds to get / with status 200', (done) => {
         request(api).get('/').expect(200, done);
@@ -54,35 +63,49 @@ describe('API server', () => {
         request(api)
             .get('/posts/3')
             .expect(200)
-            .expect({id: 3,
+            .expect({ id: 3,
                 title: "Day 4",
                 body:  "4Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
                 date:  "02.01.2021",
-                comments: [
-                    {
-                        id: 0,
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a."
-                    },
-                    {
-                        id: 1,
-                        body: "jnwefjw", 
-                    }
-                ],
                 likes1: "2",
                 likes2: "3",
                 likes3: "0",
                 gif: "https://media2.giphy.com/media/dsiv65A5ZSo7YXo8cH/giphy-downsized.gif?cid=9dc9e58e9suovuvu29aceyfk4ayb76xa7tab7ubqudg3s6ll&rid=giphy-downsized.gif&ct=g" }, done);
-
-
     });
 
     it('responds to non existing paths with 404', (done) => {
         request(api).get('/no').expect(404, done);
     });
 
-    // it('responds to invalid method request with 405', (done) => {
-    //     request(api).post('/').expect(405, done);
-    // });
+    //comments test
 
+    it('responds to get /comments with status 200', (done) => {
+        request(api).get('/comments').expect(200, done);
+    });
+
+    it('responds to post /comments with status 201', (done) => {
+        request(api)
+            .post('/comments')
+            .send(comment)
+            .set('Accept', /application\/json/)
+            .expect({message: `Comment list number ${comment.id} created successfully`}, done);
+    });
+
+    it('responds to get /comments/200 with status 500', (done) => {
+        request(api).get('/comments/200').expect(500, done);
+    });
+
+    it('responds to get /posts/:id/comments with status 200', (done) => {
+        request(api).get('/posts/0/comments').expect(200, done);
+    });
+
+    it('retrieves a comment by id', (done) => {
+        request(api)
+            .get('/comments/0')
+            .expect(200)
+            .expect({ id: 0,
+                comment: "meesageasjdaksdk",
+                postId: 0 }, done);
+    });
 
 });
